@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1.3 — Agentes Suportados | Skills CLI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-500\/20 { background-color: rgba(5, 150, 105, 0.12); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5, 150, 105, 0.25); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🧰</span>
+            <span class="font-bold text-lg hidden sm:inline">Skills CLI</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-2">
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-emerald-400 bg-emerald-500/10">T1 Fundamentos</a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-emerald-400">Início</a><span>/</span>
+      <a href="index.html" class="hover:text-emerald-400">Trilha 1</a><span>/</span>
+      <span class="text-emerald-400">Módulo 1.3</span>
+    </div>
+  </nav>
+
+  <header class="bg-gradient-to-br from-emerald-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-emerald-500/20 text-emerald-400 text-xs font-semibold rounded-full mb-4">MÓDULO 1.3</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🤖 Agentes Suportados</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">Conheça os 50+ agentes suportados, entenda os caminhos de instalação, a detecção automática e as diferenças de compatibilidade entre agentes.</p>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">6</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">40</div><div class="text-xs text-neutral-400">Minutos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">Básico</div><div class="text-xs text-neutral-400">Nível</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">Referência</div><div class="text-xs text-neutral-400">Tipo</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- Tópico 1 -->
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">📊 O Ecossistema de 50+ Agentes</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        O Skills CLI suporta mais de 50 agentes de IA, desde os mais populares como <strong class="text-emerald-400">Claude Code</strong> e <strong class="text-emerald-400">Cursor</strong> até ferramentas especializadas como <strong class="text-emerald-400">Devin</strong> e <strong class="text-emerald-400">OpenHands</strong>. A lista cresce a cada versão.
+      </p>
+      <div class="bg-dark-800 border border-dark-600 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-semibold text-white mb-4">Agentes mais populares</h3>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+          <div class="bg-dark-700 rounded-lg p-3 text-sm"><span class="text-emerald-400 font-semibold">Claude Code</span><br><span class="text-neutral-500 text-xs">Anthropic · Terminal</span></div>
+          <div class="bg-dark-700 rounded-lg p-3 text-sm"><span class="text-emerald-400 font-semibold">Cursor</span><br><span class="text-neutral-500 text-xs">Anysphere · Editor</span></div>
+          <div class="bg-dark-700 rounded-lg p-3 text-sm"><span class="text-emerald-400 font-semibold">GitHub Copilot</span><br><span class="text-neutral-500 text-xs">GitHub · Editor</span></div>
+          <div class="bg-dark-700 rounded-lg p-3 text-sm"><span class="text-emerald-400 font-semibold">OpenCode</span><br><span class="text-neutral-500 text-xs">OpenCode · Terminal</span></div>
+          <div class="bg-dark-700 rounded-lg p-3 text-sm"><span class="text-emerald-400 font-semibold">Windsurf</span><br><span class="text-neutral-500 text-xs">Codeium · Editor</span></div>
+          <div class="bg-dark-700 rounded-lg p-3 text-sm"><span class="text-emerald-400 font-semibold">Cline</span><br><span class="text-neutral-500 text-xs">Cline · VS Code</span></div>
+          <div class="bg-dark-700 rounded-lg p-3 text-sm"><span class="text-emerald-400 font-semibold">Roo Code</span><br><span class="text-neutral-500 text-xs">Roo · VS Code</span></div>
+          <div class="bg-dark-700 rounded-lg p-3 text-sm"><span class="text-emerald-400 font-semibold">Gemini CLI</span><br><span class="text-neutral-500 text-xs">Google · Terminal</span></div>
+          <div class="bg-dark-700 rounded-lg p-3 text-sm"><span class="text-emerald-400 font-semibold">Devin</span><br><span class="text-neutral-500 text-xs">Cognition · Web</span></div>
+          <div class="bg-dark-700 rounded-lg p-3 text-sm"><span class="text-emerald-400 font-semibold">Goose</span><br><span class="text-neutral-500 text-xs">Block · Terminal</span></div>
+          <div class="bg-dark-700 rounded-lg p-3 text-sm"><span class="text-emerald-400 font-semibold">Amp</span><br><span class="text-neutral-500 text-xs">Sourcegraph · Editor</span></div>
+          <div class="bg-dark-700 rounded-lg p-3 text-sm"><span class="text-emerald-400 font-semibold">OpenHands</span><br><span class="text-neutral-500 text-xs">OpenDevin · Terminal</span></div>
+        </div>
+      </div>
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
+        <h3 class="text-lg font-semibold text-primary mb-3"><span class="mr-2">💡</span> Por que tantos agentes?</h3>
+        <p class="text-neutral-300 text-sm">Times modernos raramente usam apenas um agente. Um desenvolvedor pode usar Claude Code no terminal, Cursor no editor e Copilot no GitHub. O Skills CLI garante que as mesmas skills estejam disponíveis em todos eles.</p>
+      </div>
+    </section>
+
+    <!-- Tópico 2 -->
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">📁 Caminhos de Instalação por Agente</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Cada agente lê suas instruções de um local específico no sistema de arquivos. O CLI sabe exatamente onde instalar — você não precisa configurar nada manualmente. A tabela abaixo mostra os caminhos principais:
+      </p>
+      <div class="bg-dark-800 border border-dark-600 rounded-xl overflow-hidden mb-6">
+        <table class="w-full text-sm">
+          <thead class="bg-dark-700 border-b border-dark-600">
+            <tr>
+              <th class="text-left px-4 py-3 text-neutral-300 font-semibold">Agente</th>
+              <th class="text-left px-4 py-3 text-neutral-300 font-semibold">Projeto (padrão)</th>
+              <th class="text-left px-4 py-3 text-neutral-300 font-semibold">Global (-g)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-dark-600">
+            <tr><td class="px-4 py-3 text-emerald-400 font-semibold">Claude Code</td><td class="px-4 py-3 font-mono text-xs text-neutral-300">.claude/skills/</td><td class="px-4 py-3 font-mono text-xs text-neutral-300">~/.claude/skills/</td></tr>
+            <tr><td class="px-4 py-3 text-blue-400 font-semibold">Cursor</td><td class="px-4 py-3 font-mono text-xs text-neutral-300">.cursor/rules/</td><td class="px-4 py-3 font-mono text-xs text-neutral-300">~/.cursor/rules/</td></tr>
+            <tr><td class="px-4 py-3 text-purple-400 font-semibold">GitHub Copilot</td><td class="px-4 py-3 font-mono text-xs text-neutral-300">.github/copilot/</td><td class="px-4 py-3 font-mono text-xs text-neutral-300">~/.github/copilot/</td></tr>
+            <tr><td class="px-4 py-3 text-yellow-400 font-semibold">Windsurf</td><td class="px-4 py-3 font-mono text-xs text-neutral-300">.windsurf/rules/</td><td class="px-4 py-3 font-mono text-xs text-neutral-300">~/.windsurf/rules/</td></tr>
+            <tr><td class="px-4 py-3 text-teal-400 font-semibold">OpenCode</td><td class="px-4 py-3 font-mono text-xs text-neutral-300">.opencode/skills/</td><td class="px-4 py-3 font-mono text-xs text-neutral-300">~/.opencode/skills/</td></tr>
+            <tr><td class="px-4 py-3 text-rose-400 font-semibold">Cline/Roo</td><td class="px-4 py-3 font-mono text-xs text-neutral-300">.clinerules/</td><td class="px-4 py-3 font-mono text-xs text-neutral-300">~/.clinerules/</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-3">Escopo: Projeto vs Global</h3>
+        <div class="font-mono text-sm bg-dark-900/50 rounded-lg p-4">
+          <div class="text-neutral-500"># Projeto (default) — comitado com o repositório</div>
+          <div class="text-emerald-400">npx skills add vercel-labs/agent-skills</div>
+          <div class="text-neutral-400 mt-1">→ .claude/skills/react-best-practices.md</div>
+          <br>
+          <div class="text-neutral-500"># Global — disponível em todos os projetos</div>
+          <div class="text-emerald-400">npx skills add -g vercel-labs/agent-skills</div>
+          <div class="text-neutral-400 mt-1">→ ~/.claude/skills/react-best-practices.md</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tópico 3 -->
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">🔍 Detecção Automática de Agentes</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Quando você executa <code class="bg-dark-700 px-2 py-0.5 rounded text-sm">npx skills add</code>, o CLI não instala para todos os 50+ agentes — ele primeiro <strong class="text-emerald-400">detecta quais agentes você tem instalados</strong> verificando a presença de suas configurações no sistema.
+      </p>
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center">
+            <span class="text-emerald-400 font-bold">1</span>
+          </div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold text-white mb-2">Verificação de presença</h4>
+            <p class="text-neutral-300 text-sm">O CLI verifica se existem as pastas de configuração: existe .claude/ no sistema? Existe .cursor/? Se sim, o agente está ativo.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center">
+            <span class="text-emerald-400 font-bold">2</span>
+          </div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold text-white mb-2">Instalação seletiva</h4>
+            <p class="text-neutral-300 text-sm">Apenas os agentes detectados recebem as skills. Economiza espaço e evita criar configurações desnecessárias.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center">
+            <span class="text-emerald-400 font-bold">3</span>
+          </div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold text-white mb-2">Forçar agente específico</h4>
+            <p class="text-neutral-300 text-sm">Use <code class="bg-dark-700 px-1 rounded">-a cursor</code> para instalar para um agente específico mesmo que não seja detectado automaticamente.</p>
+          </div>
+        </div>
+      </div>
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
+        <h3 class="text-lg font-semibold text-primary mb-3"><span class="mr-2">💡</span> Forçar instalação</h3>
+        <p class="text-neutral-300 text-sm mb-2">Se o CLI não detectou um agente mas você quer instalar para ele:</p>
+        <code class="text-sm text-emerald-400 block bg-dark-700 rounded p-3">npx skills add -a cursor vercel-labs/agent-skills</code>
+        <p class="text-neutral-400 text-sm mt-2">Use <code>--all</code> para instalar para todos os agentes independente de detecção.</p>
+      </div>
+    </section>
+
+    <!-- Tópico 4 -->
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">⚡ Tabela de Compatibilidade de Features</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Nem todos os agentes implementam todas as features do formato SKILL.md. Features básicas funcionam em todos, mas algumas funcionalidades avançadas são exclusivas de agentes específicos. Conhecer a tabela evita surpresas.
+      </p>
+      <div class="bg-dark-800 border border-dark-600 rounded-xl overflow-hidden mb-6">
+        <table class="w-full text-sm">
+          <thead class="bg-dark-700 border-b border-dark-600">
+            <tr>
+              <th class="text-left px-4 py-3 text-neutral-300 font-semibold">Feature</th>
+              <th class="text-center px-3 py-3 text-neutral-300 font-semibold">Claude Code</th>
+              <th class="text-center px-3 py-3 text-neutral-300 font-semibold">Cursor</th>
+              <th class="text-center px-3 py-3 text-neutral-300 font-semibold">Copilot</th>
+              <th class="text-center px-3 py-3 text-neutral-300 font-semibold">Cline</th>
+              <th class="text-center px-3 py-3 text-neutral-300 font-semibold">Outros</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-dark-600">
+            <tr>
+              <td class="px-4 py-3 text-neutral-300">Skills básicas (name + body)</td>
+              <td class="text-center px-3 py-3 text-emerald-400">✅</td>
+              <td class="text-center px-3 py-3 text-emerald-400">✅</td>
+              <td class="text-center px-3 py-3 text-emerald-400">✅</td>
+              <td class="text-center px-3 py-3 text-emerald-400">✅</td>
+              <td class="text-center px-3 py-3 text-emerald-400">✅</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-3 text-neutral-300">allowed-tools</td>
+              <td class="text-center px-3 py-3 text-emerald-400">✅</td>
+              <td class="text-center px-3 py-3 text-emerald-400">✅</td>
+              <td class="text-center px-3 py-3 text-emerald-400">✅</td>
+              <td class="text-center px-3 py-3 text-emerald-400">✅</td>
+              <td class="text-center px-3 py-3 text-emerald-400">✅</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-3 text-neutral-300">context: fork</td>
+              <td class="text-center px-3 py-3 text-emerald-400">✅</td>
+              <td class="text-center px-3 py-3 text-red-400">❌</td>
+              <td class="text-center px-3 py-3 text-red-400">❌</td>
+              <td class="text-center px-3 py-3 text-red-400">❌</td>
+              <td class="text-center px-3 py-3 text-red-400">❌</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-3 text-neutral-300">Hooks (pre/post-tool)</td>
+              <td class="text-center px-3 py-3 text-emerald-400">✅</td>
+              <td class="text-center px-3 py-3 text-red-400">❌</td>
+              <td class="text-center px-3 py-3 text-red-400">❌</td>
+              <td class="text-center px-3 py-3 text-emerald-400">✅</td>
+              <td class="text-center px-3 py-3 text-red-400">❌</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-3">Graceful degradation</h3>
+        <p class="text-neutral-300 text-sm">Features não suportadas são silenciosamente ignoradas — a skill funciona, apenas sem aquela feature específica. Isso garante portabilidade: uma skill com hooks funciona no Claude Code e funciona (sem hooks) no Cursor.</p>
+      </div>
+    </section>
+
+    <!-- Tópico 5 -->
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">🏆 Qual Agente Usar para Cada Caso</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        A escolha do agente certo para cada tipo de skill maximiza o benefício. Alguns agentes têm funcionalidades exclusivas que valem a pena considerar ao criar skills avançadas.
+      </p>
+      <div class="space-y-4 mb-6">
+        <div class="bg-dark-800 border border-dark-600 rounded-xl p-6">
+          <div class="flex items-center space-x-3 mb-3">
+            <span class="text-2xl">🔮</span>
+            <h4 class="font-semibold text-white">Claude Code — Skills avançadas</h4>
+          </div>
+          <p class="text-neutral-300 text-sm mb-2">Melhor escolha quando você quer <strong>hooks</strong> (automações ao usar ferramentas) ou <strong>context:fork</strong> (contexto isolado para a skill). Roda no terminal, ideal para fluxos de desenvolvimento.</p>
+          <div class="font-mono text-xs text-neutral-400 bg-dark-700 rounded p-2">Caminho: .claude/skills/ · ~/.claude/skills/ (global)</div>
+        </div>
+        <div class="bg-dark-800 border border-dark-600 rounded-xl p-6">
+          <div class="flex items-center space-x-3 mb-3">
+            <span class="text-2xl">⚡</span>
+            <h4 class="font-semibold text-white">Cursor — Skills de editor</h4>
+          </div>
+          <p class="text-neutral-300 text-sm mb-2">Excelente para skills de formatação de código, geração de snippets e assistência inline durante edição. Suporta skills básicas e allowed-tools.</p>
+          <div class="font-mono text-xs text-neutral-400 bg-dark-700 rounded p-2">Caminho: .cursor/rules/ · ~/.cursor/rules/ (global)</div>
+        </div>
+        <div class="bg-dark-800 border border-dark-600 rounded-xl p-6">
+          <div class="flex items-center space-x-3 mb-3">
+            <span class="text-2xl">🐙</span>
+            <h4 class="font-semibold text-white">GitHub Copilot — Skills de workflow</h4>
+          </div>
+          <p class="text-neutral-300 text-sm mb-2">Ideal para skills relacionadas ao fluxo GitHub: templates de PR, regras de commit, guidelines de code review. Integrado ao ecossistema GitHub Actions.</p>
+          <div class="font-mono text-xs text-neutral-400 bg-dark-700 rounded p-2">Caminho: .github/copilot/ · ~/.github/copilot/ (global)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tópico 6 -->
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">🗺️ Pastas de Descoberta de Skills</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        O CLI faz descoberta recursiva de skills em múltiplas pastas padronizadas. Isso permite que repositórios organizem suas skills em diferentes locais sem configuração adicional.
+      </p>
+      <div class="bg-dark-800 border border-dark-600 rounded-xl p-6 mb-6 font-mono text-sm">
+        <p class="text-neutral-500 mb-3 font-sans text-xs">Pastas onde o CLI busca skills (em ordem de prioridade):</p>
+        <pre class="text-neutral-300 leading-relaxed">meu-repositorio/
+├── <span class="text-emerald-400">skills/</span>                    ← principal
+│   ├── react.md
+│   └── typescript.md
+├── <span class="text-emerald-400">.claude/skills/</span>           ← específico Claude Code
+├── <span class="text-emerald-400">.agents/skills/</span>            ← genérico multi-agente
+├── <span class="text-emerald-400">.cursor/skills/</span>            ← específico Cursor
+└── <span class="text-emerald-400">skills/.curated/</span>           ← skills curadas
+    └── stable-skill.md</pre>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6">
+          <h3 class="text-lg font-semibold text-emerald-400 mb-3">Descoberta recursiva</h3>
+          <p class="text-neutral-300 text-sm">O CLI busca recursivamente em subpastas de skills/. Você pode organizar skills em categorias: skills/frontend/, skills/devops/, skills/testing/ — todas serão descobertas.</p>
+        </div>
+        <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
+          <h3 class="text-lg font-semibold text-primary mb-3"><span class="mr-2">💡</span> Best practice</h3>
+          <p class="text-neutral-300 text-sm">Use <code>skills/</code> como pasta principal em repositórios públicos. Use <code>.claude/skills/</code> para skills específicas do Claude Code que outros agentes não devem carregar.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Resumo -->
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-emerald-900/40 via-dark-800 to-dark-800 rounded-xl border border-emerald-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">✅</span> Resumo do Módulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">50+ agentes suportados</strong><span class="text-neutral-400"> — Claude Code, Cursor, Copilot, Cline, OpenCode, Windsurf e muito mais</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Caminhos específicos por agente</strong><span class="text-neutral-400"> — .claude/skills/, .cursor/rules/, .github/copilot/ etc.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Detecção automática</strong><span class="text-neutral-400"> — CLI instala apenas para agentes presentes. Use -a para forçar.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Features exclusivas</strong><span class="text-neutral-400"> — context:fork e hooks só no Claude Code (e hooks no Cline)</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Graceful degradation</strong><span class="text-neutral-400"> — Features não suportadas são ignoradas silenciosamente</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Descoberta recursiva</strong><span class="text-neutral-400"> — skills/, .claude/skills/, .agents/skills/ e mais</span></div></div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-emerald-400 mb-2">Próxima Trilha:</h3>
+          <p class="text-neutral-300">Trilha 2 — ⚡ CLI na Prática: Todos os comandos com exemplos reais, flags e casos de uso</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="modulo-1-2.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Módulo 1.2</a>
+          <a href="../trilha2/index.html" class="flex-1 text-center px-6 py-3 bg-emerald-600 text-white rounded-lg font-semibold hover:bg-emerald-500 transition-colors">Trilha 2: CLI na Prática →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>Skills CLI - Do Zero ao Expert · <a href="https://inema.club" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a> · 2026</p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light') { themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark'); }
+    else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden');
+      themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>

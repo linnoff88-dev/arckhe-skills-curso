@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>5.2 — Multi-agente: Cursor, Copilot, OpenCode | Skills CLI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#FACC15',dark:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563'}}}}}</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body{font-family:'Inter',sans-serif;}.dark body{background-color:#111827;}
+    html:not(.dark) body{background-color:#f8fafc;}html:not(.dark) .bg-dark-900{background-color:#ffffff;}html:not(.dark) .bg-dark-800{background-color:#f9fafb;}html:not(.dark) .bg-dark-700{background-color:#f3f4f6;}html:not(.dark) .bg-dark-600{background-color:#e5e7eb;}html:not(.dark) .text-neutral-100{color:#111827;}html:not(.dark) .text-neutral-300{color:#4b5563;}html:not(.dark) .text-neutral-400{color:#6b7280;}html:not(.dark) .text-neutral-500{color:#9ca3af;}html:not(.dark) .border-dark-600{border-color:#d1d5db;}
+    html:not(.dark) .text-teal-400{color:#0d9488;}html:not(.dark) .bg-teal-500\/20{background-color:rgba(13, 148, 136,0.12);}html:not(.dark) .bg-teal-500\/10{background-color:rgba(13, 148, 136,0.08);}html:not(.dark) .border-teal-500\/30{border-color:rgba(13, 148, 136,0.25);}
+    html:not(.dark) [class*="bg-gradient-to"]{background-image:none!important;}html:not(.dark) .text-primary{color:#a16207;}html:not(.dark) .bg-primary\/10{background-color:rgba(161,98,7,0.08);}html:not(.dark) .border-primary\/40{border-color:rgba(161,98,7,0.25);}html:not(.dark) .text-sky-400{color:#0369a1;}html:not(.dark) .text-yellow-400{color:#a16207;}html:not(.dark) .hover\:text-sky-300:hover{color:#0284c7;}html:not(.dark) .bg-dark-900\/95{background-color:rgba(255,255,255,0.95);}
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🧰</span><span class="font-bold text-lg hidden sm:inline">Skills CLI</span></a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1">
+          <a href="../trilha1/index.html" class="px-2 py-1.5 rounded-lg text-xs font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentos</span></a>
+          <a href="../trilha2/index.html" class="px-2 py-1.5 rounded-lg text-xs font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">CLI na Prática</span></a>
+          <a href="../trilha3/index.html" class="px-2 py-1.5 rounded-lg text-xs font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Criando Skills</span></a>
+          <a href="../trilha4/index.html" class="px-2 py-1.5 rounded-lg text-xs font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Exemplos Reais</span></a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-teal-400 bg-teal-500/10"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Agentes</span></a>
+          <a href="../trilha6/index.html" class="px-2 py-1.5 rounded-lg text-xs font-semibold text-neutral-400 hover:text-rose-400 hover:bg-rose-500/10 transition-colors"><span class="sm:hidden">T6</span><span class="hidden sm:inline">Avançado</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-teal-400">Início</a><span>/</span>
+      <a href="index.html" class="hover:text-teal-400">Trilha 5</a><span>/</span>
+      <span class="text-teal-400">Módulo 5.2</span>
+    </div>
+  </nav>
+  <header class="bg-gradient-to-br from-teal-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-teal-500/20 text-teal-400 text-xs font-semibold rounded-full mb-4">MÓDULO 5.2</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🔄 Multi-agente: Cursor, Copilot, OpenCode</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">Instalando para múltiplos agentes simultaneamente, diferenças de comportamento, skills universais vs específicas e estratégias de compatibilidade.</p>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-teal-400">6</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-teal-400">45</div><div class="text-xs text-neutral-400">Minutos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-teal-400">Avançado</div><div class="text-xs text-neutral-400">Nível</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-teal-400">Prático</div><div class="text-xs text-neutral-400">Tipo</div></div>
+      </div>
+    </div>
+  </header>
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">📦 Instalando para múltiplos agentes</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">npx skills add instala para todos os agentes detectados. Flags -a claude,cursor limitam. --all instala para todos sem detecção.</p>
+      <div class="bg-gradient-to-br from-teal-900/30 to-dark-800 rounded-xl border border-teal-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-teal-400 mb-3">Um comando, múltiplos destinos</h3>
+        <p class="text-neutral-300 text-sm">O poder do Skills CLI está em instalar skills uma vez e ter disponível em todos os agentes que você usa.</p>
+      </div>
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
+        <h3 class="text-lg font-semibold text-primary mb-3"><span class="mr-2">💡</span> Conceitos-chave</h3>
+        <p class="text-neutral-300 text-sm">detecção automática · múltiplos destinos · -a flag · --all · install simultâneo</p>
+      </div>
+    </section>
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">🔄 Diferenças de comportamento entre agentes</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Agentes têm modelos diferentes, prompts de sistema distintos e formas diferentes de incluir skills no contexto.</p>
+      <div class="bg-gradient-to-br from-teal-900/30 to-dark-800 rounded-xl border border-teal-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-teal-400 mb-3">Por que o mesmo SKILL.md age diferente</h3>
+        <p class="text-neutral-300 text-sm">A mesma skill pode ter eficácia diferente em Claude Code vs Cursor. Description e Steps devem ser testados em cada agente.</p>
+      </div>
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
+        <h3 class="text-lg font-semibold text-primary mb-3"><span class="mr-2">💡</span> Conceitos-chave</h3>
+        <p class="text-neutral-300 text-sm">modelos diferentes · prompts de sistema · eficácia variável · teste por agente</p>
+      </div>
+    </section>
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">⚖️ Skills universais vs skills específicas</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Skills universais (skills/) funcionam em todos. Skills específicas (.claude/skills/) usam features exclusivas do agente.</p>
+      <div class="bg-gradient-to-br from-teal-900/30 to-dark-800 rounded-xl border border-teal-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-teal-400 mb-3">Decidindo a estratégia</h3>
+        <p class="text-neutral-300 text-sm">Estratégia híbrida: skill base em skills/ para todos + skill avançada em .claude/skills/ para Claude Code.</p>
+      </div>
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
+        <h3 class="text-lg font-semibold text-primary mb-3"><span class="mr-2">💡</span> Conceitos-chave</h3>
+        <p class="text-neutral-300 text-sm">estratégia híbrida · skills/ universal · .claude/skills/ específico · base + avançado</p>
+      </div>
+    </section>
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">📊 Compatibilidade: matrix detalhada</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Tabela completa: skills básicas (todos), allowed-tools (quase todos), context:fork (Claude Code), hooks (Claude Code + Cline).</p>
+      <div class="bg-gradient-to-br from-teal-900/30 to-dark-800 rounded-xl border border-teal-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-teal-400 mb-3">Feature por agente</h3>
+        <p class="text-neutral-300 text-sm">A matrix é referência para decidir quais features usar ao criar skill com compatibilidade ampla.</p>
+      </div>
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
+        <h3 class="text-lg font-semibold text-primary mb-3"><span class="mr-2">💡</span> Conceitos-chave</h3>
+        <p class="text-neutral-300 text-sm">matrix completa · features por agente · graceful degradation · referência</p>
+      </div>
+    </section>
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">🎯 Estratégia para máxima compatibilidade</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Escreva núcleo com features universais. Adicione features avançadas em arquivos separados para agentes específicos.</p>
+      <div class="bg-gradient-to-br from-teal-900/30 to-dark-800 rounded-xl border border-teal-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-teal-400 mb-3">Skills para qualquer agente</h3>
+        <p class="text-neutral-300 text-sm">Máxima compatibilidade = mais usuários. Uma skill que funciona em 50+ agentes tem muito mais impacto.</p>
+      </div>
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
+        <h3 class="text-lg font-semibold text-primary mb-3"><span class="mr-2">💡</span> Conceitos-chave</h3>
+        <p class="text-neutral-300 text-sm">features universais · arquivos separados · impacto máximo · compatibilidade ampla</p>
+      </div>
+    </section>
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">🧪 Testando skills em diferentes agentes</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Processo: ativar skill em cada agente, verificar description, testar Steps, comparar resultados.</p>
+      <div class="bg-gradient-to-br from-teal-900/30 to-dark-800 rounded-xl border border-teal-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-teal-400 mb-3">Garantindo qualidade cross-agent</h3>
+        <p class="text-neutral-300 text-sm">Testes cross-agent revelam problemas específicos de cada agente. Fundamental para skills de uso geral.</p>
+      </div>
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
+        <h3 class="text-lg font-semibold text-primary mb-3"><span class="mr-2">💡</span> Conceitos-chave</h3>
+        <p class="text-neutral-300 text-sm">testes cross-agent · verificação · comparação · diagnóstico · qualidade</p>
+      </div>
+    </section>
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-teal-900/40 via-dark-800 to-dark-800 rounded-xl border border-teal-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">✅</span> Resumo do Módulo</h2>
+        <div class="space-y-4 mb-8">
+                    <div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><div><strong class="text-white">npx skills add instala para todos os agentes detectados. Flags -a claude,cursor limitam. --all instala para todos sem detecção.</strong><span class="text-neutral-400"> — Um comando, múltiplos destinos</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><div><strong class="text-white">Agentes têm modelos diferentes, prompts de sistema distintos e formas diferentes de incluir skills no contexto.</strong><span class="text-neutral-400"> — Por que o mesmo SKILL.md age diferente</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><div><strong class="text-white">Skills universais (skills/) funcionam em todos. Skills específicas (.claude/skills/) usam features exclusivas do agente.</strong><span class="text-neutral-400"> — Decidindo a estratégia</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><div><strong class="text-white">Tabela completa: skills básicas (todos), allowed-tools (quase todos), context:fork (Claude Code), hooks (Claude Code + Cline).</strong><span class="text-neutral-400"> — Feature por agente</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><div><strong class="text-white">Escreva núcleo com features universais. Adicione features avançadas em arquivos separados para agentes específicos.</strong><span class="text-neutral-400"> — Skills para qualquer agente</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><div><strong class="text-white">Processo: ativar skill em cada agente, verificar description, testar Steps, comparar resultados.</strong><span class="text-neutral-400"> — Garantindo qualidade cross-agent</span></div></div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-teal-400 mb-2">Próximo:</h3>
+          <p class="text-neutral-300">Trilha 6 — Avançado</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="modulo-5-1.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Módulo 5.1</a>
+          <a href="../trilha6/index.html" class="flex-1 text-center px-6 py-3 bg-rose-600 text-white rounded-lg font-semibold hover:bg-rose-500 transition-colors">Próxima Trilha →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="border-t border-dark-600 py-8 mt-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>Skills CLI - Do Zero ao Expert · <a href="https://inema.club" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a> · 2026</p>
+    </div>
+  </footer>
+  <script>
+    const tt=document.getElementById('theme-toggle');const di=document.getElementById('theme-toggle-dark-icon');const li=document.getElementById('theme-toggle-light-icon');const h=document.documentElement;
+    if(localStorage.getItem('theme')==='light'){di.classList.remove('hidden');h.classList.remove('dark');}else{li.classList.remove('hidden');}
+    tt.addEventListener('click',()=>{di.classList.toggle('hidden');li.classList.toggle('hidden');h.classList.toggle('dark');localStorage.setItem('theme',h.classList.contains('dark')?'dark':'light');});
+  </script>
+</body>
+</html>

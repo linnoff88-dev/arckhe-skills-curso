@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1.1 — O Ecossistema de Agent Skills | Skills CLI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-500\/20 { background-color: rgba(5, 150, 105, 0.12); }
+    html:not(.dark) .bg-emerald-500\/10 { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5, 150, 105, 0.25); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🧰</span>
+            <span class="font-bold text-lg hidden sm:inline">Skills CLI</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-2">
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-emerald-400 bg-emerald-500/10">T1 Fundamentos</a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-emerald-400">Início</a>
+      <span>/</span>
+      <a href="index.html" class="hover:text-emerald-400">Trilha 1</a>
+      <span>/</span>
+      <span class="text-emerald-400">Módulo 1.1</span>
+    </div>
+  </nav>
+
+  <header class="bg-gradient-to-br from-emerald-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-emerald-500/20 text-emerald-400 text-xs font-semibold rounded-full mb-4">MÓDULO 1.1</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🌐 O Ecossistema de Agent Skills</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">Entenda o que são agent skills, por que elas existem, como o Skills CLI se comporta como um "npm para agentes" e qual é o papel do Vercel Labs nesse ecossistema.</p>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-emerald-400">6</div>
+          <div class="text-xs text-neutral-400">Tópicos</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-emerald-400">40</div>
+          <div class="text-xs text-neutral-400">Minutos</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-emerald-400">Básico</div>
+          <div class="text-xs text-neutral-400">Nível</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-emerald-400">Teoria</div>
+          <div class="text-xs text-neutral-400">Tipo</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- Tópico 1 -->
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">🧩 O que são Agent Skills</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Agent skills são arquivos de instrução no formato <strong class="text-emerald-400">SKILL.md</strong> que ensinam comportamentos específicos a agentes de IA. Pense nelas como "plugins de conhecimento" — cada skill encapsula um conjunto de instruções que o agente segue quando a situação é relevante.
+      </p>
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4 flex items-center"><span class="mr-2">💡</span> Conceito Central</h3>
+        <p class="text-neutral-300 mb-4">Uma skill não é um script que executa automaticamente — é uma instrução que o agente lê e incorpora ao seu comportamento. Quando o contexto bate com a descrição da skill, o agente a aplica naturalmente.</p>
+        <ul class="space-y-2 text-neutral-300">
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span><strong>Formato:</strong> Arquivo Markdown com frontmatter YAML</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span><strong>Ativação:</strong> Automática, baseada no contexto da conversa</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span><strong>Portabilidade:</strong> Funciona em múltiplos agentes</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span><strong>Reutilização:</strong> Pode ser compartilhada via GitHub</span></li>
+        </ul>
+      </div>
+      <div class="bg-dark-800 border border-dark-600 rounded-xl p-6 mb-6 font-mono text-sm">
+        <p class="text-neutral-500 mb-3">Exemplo mínimo de SKILL.md:</p>
+        <pre class="text-neutral-300 leading-relaxed">---
+name: react-best-practices
+description: Aplica boas práticas React ao gerar ou revisar código
+---
+
+# React Best Practices
+
+Quando gerando componentes React, sempre:
+- Use componentes funcionais com hooks
+- Prefira TypeScript com types explícitos
+- Siga o padrão de nomenclatura PascalCase</pre>
+      </div>
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">🎯</span> Dica Prática</h3>
+        <p class="text-neutral-300">Pense em skills como a memória persistente que você sempre quis ter com seu agente. Sem skills, você explica as convenções do projeto toda sessão. Com skills, o agente já sabe — e mantém esse conhecimento atualizado via <code class="bg-dark-700 px-1 rounded">npx skills update</code>.</p>
+      </div>
+    </section>
+
+    <!-- Tópico 2 -->
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">📦 A Analogia com npm</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        A analogia mais precisa para entender o Skills CLI é compará-lo ao <strong class="text-emerald-400">npm</strong>. Assim como npm gerencia pacotes Node.js que adicionam funcionalidades ao seu projeto, o Skills CLI gerencia "pacotes de habilidades" que adicionam capacidades ao seu agente de IA.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-dark-800 border border-dark-600 rounded-xl p-6">
+          <h4 class="font-bold text-blue-400 mb-4">📦 npm (Node.js)</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-blue-400">→</span><span><code>npm install react</code> — instala pacote</span></li>
+            <li class="flex items-start space-x-2"><span class="text-blue-400">→</span><span><code>npm install -g eslint</code> — instalação global</span></li>
+            <li class="flex items-start space-x-2"><span class="text-blue-400">→</span><span><code>npm list</code> — lista pacotes</span></li>
+            <li class="flex items-start space-x-2"><span class="text-blue-400">→</span><span><code>npm update</code> — atualiza pacotes</span></li>
+            <li class="flex items-start space-x-2"><span class="text-blue-400">→</span><span>package.json — registro local</span></li>
+          </ul>
+        </div>
+        <div class="bg-dark-800 border border-dark-600 rounded-xl p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">🧰 Skills CLI (Agentes)</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">→</span><span><code>npx skills add owner/repo</code> — instala skill</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">→</span><span><code>npx skills add -g owner/repo</code> — instalação global</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">→</span><span><code>npx skills list</code> — lista skills</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">→</span><span><code>npx skills update</code> — atualiza skills</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">→</span><span>skill-lock.json — registro local</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-3">Diferenças importantes</h3>
+        <p class="text-neutral-300 text-sm mb-3">Ao contrário do npm, skills são instaladas como <strong>symlinks</strong> por padrão (não cópias). Isso significa que ao atualizar o repositório fonte, todas as instalações são atualizadas automaticamente com <code class="bg-dark-700 px-1 rounded">npx skills update</code>.</p>
+        <p class="text-neutral-300 text-sm">Skills também são instaladas em pastas específicas de cada agente — não em node_modules. O CLI sabe exatamente onde cada agente procura suas instruções.</p>
+      </div>
+    </section>
+
+    <!-- Tópico 3 -->
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">🌐 skills.sh e agentskills.io</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        O ecossistema de agent skills é suportado por duas plataformas essenciais: <strong class="text-emerald-400">skills.sh</strong> (o diretório público de skills) e <strong class="text-emerald-400">agentskills.io</strong> (a especificação oficial do formato SKILL.md).
+      </p>
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center">
+            <span class="text-emerald-400 font-bold">1</span>
+          </div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold text-white mb-2">skills.sh — O Diretório</h4>
+            <p class="text-sm text-neutral-400 mb-3">Marketplace público de skills</p>
+            <p class="text-neutral-300 text-sm">Cataloga repositórios de skills com contagem de instalações (install count). O leaderboard mostra as skills mais usadas — um bom indicador de qualidade e confiabilidade. Skills com 100K+ instalações são consideradas maduras.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center">
+            <span class="text-emerald-400 font-bold">2</span>
+          </div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold text-white mb-2">agentskills.io — A Especificação</h4>
+            <p class="text-sm text-neutral-400 mb-3">Documentação oficial do formato</p>
+            <p class="text-neutral-300 text-sm">Hospeda a especificação oficial do formato SKILL.md: campos obrigatórios, campos opcionais, semântica de cada campo e como agentes devem processar o arquivo. Referência definitiva para criar skills compatíveis.</p>
+          </div>
+        </div>
+      </div>
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
+        <h3 class="text-lg font-semibold text-primary mb-3"><span class="mr-2">💡</span> Como usar o skills.sh</h3>
+        <p class="text-neutral-300 text-sm mb-2">1. Acesse <code class="bg-dark-700 px-1 rounded">skills.sh</code> e navegue pelo leaderboard</p>
+        <p class="text-neutral-300 text-sm mb-2">2. Encontrou algo interessante? Copie o caminho owner/repo</p>
+        <p class="text-neutral-300 text-sm mb-2">3. Execute: <code class="bg-dark-700 px-1 rounded">npx skills add owner/repo</code></p>
+        <p class="text-neutral-300 text-sm">Ou use o CLI diretamente: <code class="bg-dark-700 px-1 rounded">npx skills find react</code></p>
+      </div>
+    </section>
+
+    <!-- Tópico 4 -->
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">🎯 Agentes Genéricos vs Especialistas</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Um agente de IA sem skills é como um desenvolvedor júnior no primeiro dia de trabalho: capaz, mas sem conhecimento específico do seu contexto. Com skills, ele se torna um especialista no seu stack, nas suas convenções e nos processos do seu time.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Sem Skills (Genérico)</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Você explica as convenções toda sessão</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>O agente não sabe seu stack favorito</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Padrões de código inconsistentes</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Conhecimento não é compartilhado no time</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Resultado depende de qual prompt você usou</span></li>
+          </ul>
+        </div>
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Com Skills (Especialista)</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Convenções aplicadas automaticamente</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Conhece seu stack, bibliotecas e padrões</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Código consistente sempre</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Skills versionadas e compartilhadas via Git</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Resultado previsível e reproduzível</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-3">Casos de uso reais</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li class="flex items-start space-x-2"><span class="text-emerald-400">•</span><span><strong>Time de frontend:</strong> Skill com convenções de componentes React, patterns de TypeScript e guidelines de acessibilidade</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400">•</span><span><strong>DevOps:</strong> Skill com padrões de Dockerfile, configurações de CI/CD e práticas de segurança</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400">•</span><span><strong>Equipe de dados:</strong> Skill com convenções de SQL, padrões de pipeline e documentação de schemas</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Tópico 5 -->
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">🔧 Filosofia Modular e Reutilizável</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        O design do Skills CLI é guiado por três princípios fundamentais: <strong class="text-emerald-400">atomicidade</strong> (cada skill tem uma responsabilidade), <strong class="text-emerald-400">composição</strong> (múltiplas skills trabalhando juntas) e <strong class="text-emerald-400">portabilidade</strong> (funciona em qualquer agente compatível).
+      </p>
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4">Os três princípios</h3>
+        <div class="space-y-4">
+          <div class="flex items-start space-x-3">
+            <span class="text-2xl">⚛️</span>
+            <div>
+              <h4 class="font-semibold text-white">Atomicidade</h4>
+              <p class="text-neutral-300 text-sm">Uma skill, uma responsabilidade. A skill react-best-practices cuida apenas de React. A skill git-commit-style cuida apenas do formato dos commits. Skills pequenas são mais fáceis de manter e testar.</p>
+            </div>
+          </div>
+          <div class="flex items-start space-x-3">
+            <span class="text-2xl">🧩</span>
+            <div>
+              <h4 class="font-semibold text-white">Composição</h4>
+              <p class="text-neutral-300 text-sm">Instale múltiplas skills para criar um agente completo. react-best-practices + typescript-strict + accessibility-guidelines = agente frontend completo.</p>
+            </div>
+          </div>
+          <div class="flex items-start space-x-3">
+            <span class="text-2xl">🌍</span>
+            <div>
+              <h4 class="font-semibold text-white">Portabilidade</h4>
+              <p class="text-neutral-300 text-sm">Skills escritas com campos padrão funcionam em Claude Code, Cursor, Copilot e 47+ outros agentes. Seu investimento não fica preso em um único ecossistema.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
+        <h3 class="text-lg font-semibold text-primary mb-3"><span class="mr-2">💡</span> Dica de Design</h3>
+        <p class="text-neutral-300 text-sm">Quando criar uma skill, se você estiver tentado a nomear algo como "tudo-sobre-react", divida em skills menores. Uma skill de 50 linhas será mais eficaz do que uma skill de 500 linhas — o agente absorve melhor instruções focadas.</p>
+      </div>
+    </section>
+
+    <!-- Tópico 6 -->
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">🏢 Vercel Labs e a Origem do Projeto</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        O Skills CLI foi criado pelo <strong class="text-emerald-400">Vercel Labs</strong>, o braço de experimentação e inovação da Vercel. O projeto nasceu da necessidade real de padronizar como times de desenvolvimento usam agentes de IA — resolvendo a fragmentação entre diferentes ferramentas.
+      </p>
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4">A história por trás</h3>
+        <p class="text-neutral-300 text-sm mb-3">Antes do Skills CLI, times que usavam múltiplos agentes tinham o mesmo problema: instruções duplicadas, inconsistentes e difíceis de manter. Um time que usava Claude Code, Cursor e Copilot precisava manter três conjuntos de instruções separados.</p>
+        <p class="text-neutral-300 text-sm mb-3">O Skills CLI resolve isso com um formato único (SKILL.md) e um CLI que sabe onde instalar as instruções para cada agente. Uma skill, múltiplos destinos.</p>
+        <div class="font-mono text-xs bg-dark-900/50 rounded-lg p-4 mt-4">
+          <div class="text-neutral-500"># Antes: 3 arquivos para manter</div>
+          <div class="text-red-400">.claude/CLAUDE.md</div>
+          <div class="text-red-400">.cursorrules</div>
+          <div class="text-red-400">.github/copilot-instructions.md</div>
+          <div class="text-neutral-500 mt-2"># Depois: 1 skill, instalada em todos</div>
+          <div class="text-emerald-400">npx skills add ./minha-skill</div>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-dark-800 border border-dark-600 rounded-xl p-4">
+          <h4 class="font-semibold text-white mb-2">🔓 Open Source</h4>
+          <p class="text-neutral-300 text-sm">O projeto está disponível em github.com/vercel-labs/skills. Contribuições são bem-vindas — desde correções de bugs até novos adaptadores de agentes.</p>
+        </div>
+        <div class="bg-dark-800 border border-dark-600 rounded-xl p-4">
+          <h4 class="font-semibold text-white mb-2">🚀 Status Atual</h4>
+          <p class="text-neutral-300 text-sm">Em rápida evolução. Novos agentes são adicionados regularmente. A especificação agentskills.io garante compatibilidade entre versões.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Resumo -->
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-emerald-900/40 via-dark-800 to-dark-800 rounded-xl border border-emerald-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">✅</span> Resumo do Módulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3">
+            <span class="text-emerald-400 mt-1">✓</span>
+            <div><strong class="text-white">Agent skills são arquivos SKILL.md</strong><span class="text-neutral-400"> — instruções que o agente incorpora ao seu comportamento baseado no contexto</span></div>
+          </div>
+          <div class="flex items-start space-x-3">
+            <span class="text-emerald-400 mt-1">✓</span>
+            <div><strong class="text-white">Skills CLI é o "npm para agentes"</strong><span class="text-neutral-400"> — mesma filosofia de instalação, scope local/global e atualizações</span></div>
+          </div>
+          <div class="flex items-start space-x-3">
+            <span class="text-emerald-400 mt-1">✓</span>
+            <div><strong class="text-white">skills.sh e agentskills.io</strong><span class="text-neutral-400"> — diretório público e especificação oficial do ecossistema</span></div>
+          </div>
+          <div class="flex items-start space-x-3">
+            <span class="text-emerald-400 mt-1">✓</span>
+            <div><strong class="text-white">Skills transformam agentes genéricos</strong><span class="text-neutral-400"> — em especialistas do seu stack, convenções e processos</span></div>
+          </div>
+          <div class="flex items-start space-x-3">
+            <span class="text-emerald-400 mt-1">✓</span>
+            <div><strong class="text-white">Filosofia: atômica, composível, portável</strong><span class="text-neutral-400"> — uma skill por responsabilidade, várias juntas para casos completos</span></div>
+          </div>
+          <div class="flex items-start space-x-3">
+            <span class="text-emerald-400 mt-1">✓</span>
+            <div><strong class="text-white">Criado pelo Vercel Labs</strong><span class="text-neutral-400"> — open source, resolvendo fragmentação entre múltiplos agentes</span></div>
+          </div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-emerald-400 mb-2">Próximo Módulo:</h3>
+          <p class="text-neutral-300">1.2 — 📄 Anatomia de um SKILL.md — Aprenda a estrutura completa: frontmatter, campos obrigatórios e como escrever instruções eficazes</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="index.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Voltar para Trilha 1</a>
+          <a href="modulo-1-2.html" class="flex-1 text-center px-6 py-3 bg-emerald-600 text-white rounded-lg font-semibold hover:bg-emerald-500 transition-colors">Próximo Módulo →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>Skills CLI - Do Zero ao Expert · <a href="https://inema.club" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a> · 2026</p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light') { themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark'); }
+    else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden');
+      themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>

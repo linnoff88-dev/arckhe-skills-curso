@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4.1 — Skills Populares da Comunidade | Skills CLI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#FACC15',dark:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563'}}}}}</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body{font-family:'Inter',sans-serif;}.dark body{background-color:#111827;}
+    html:not(.dark) body{background-color:#f8fafc;}html:not(.dark) .bg-dark-900{background-color:#ffffff;}html:not(.dark) .bg-dark-800{background-color:#f9fafb;}html:not(.dark) .bg-dark-700{background-color:#f3f4f6;}html:not(.dark) .bg-dark-600{background-color:#e5e7eb;}html:not(.dark) .text-neutral-100{color:#111827;}html:not(.dark) .text-neutral-300{color:#4b5563;}html:not(.dark) .text-neutral-400{color:#6b7280;}html:not(.dark) .text-neutral-500{color:#9ca3af;}html:not(.dark) .border-dark-600{border-color:#d1d5db;}
+        html:not(.dark) .text-amber-400{color:#92400e;}html:not(.dark) .bg-amber-500\/20{background-color:rgba(217, 119, 6,0.12);}html:not(.dark) .bg-amber-500\/10{background-color:rgba(217, 119, 6,0.08);}html:not(.dark) .border-amber-500\/30{border-color:rgba(217, 119, 6,0.25);}
+    html:not(.dark) [class*="bg-gradient-to"]{background-image:none!important;}html:not(.dark) .text-primary{color:#a16207;}html:not(.dark) .bg-primary\/10{background-color:rgba(161,98,7,0.08);}html:not(.dark) .border-primary\/40{border-color:rgba(161,98,7,0.25);}html:not(.dark) .text-sky-400{color:#0369a1;}html:not(.dark) .text-yellow-400{color:#a16207;}html:not(.dark) .hover\:text-sky-300:hover{color:#0284c7;}html:not(.dark) .bg-dark-900\/95{background-color:rgba(255,255,255,0.95);}
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🧰</span><span class="font-bold text-lg hidden sm:inline">Skills CLI</span></a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1">
+          <a href="../trilha1/index.html" class="px-2 py-1.5 rounded-lg text-xs font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentos</span></a>
+          <a href="../trilha2/index.html" class="px-2 py-1.5 rounded-lg text-xs font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">CLI na Prática</span></a>
+          <a href="../trilha3/index.html" class="px-2 py-1.5 rounded-lg text-xs font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Criando Skills</span></a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-amber-400 bg-amber-500/10"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Exemplos</span></a>
+          <a href="../trilha5/index.html" class="px-2 py-1.5 rounded-lg text-xs font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Agentes</span></a>
+          <a href="../trilha6/index.html" class="px-2 py-1.5 rounded-lg text-xs font-semibold text-neutral-400 hover:text-rose-400 hover:bg-rose-500/10 transition-colors"><span class="sm:hidden">T6</span><span class="hidden sm:inline">Avançado</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-amber-400">Início</a><span>/</span>
+      <a href="index.html" class="hover:text-amber-400">Trilha 4</a><span>/</span>
+      <span class="text-amber-400">Módulo 4.1</span>
+    </div>
+  </nav>
+  <header class="bg-gradient-to-br from-amber-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-amber-500/20 text-amber-400 text-xs font-semibold rounded-full mb-4">MÓDULO 4.1</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🌟 Skills Populares da Comunidade</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">vercel-labs/agent-skills, anthropics/skills, ComposioHQ e como avaliar qualidade pelo leaderboard do skills.sh.</p>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">6</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">40</div><div class="text-xs text-neutral-400">Minutos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">Inter.</div><div class="text-xs text-neutral-400">Nível</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">Prático</div><div class="text-xs text-neutral-400">Tipo</div></div>
+      </div>
+    </div>
+  </header>
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">⭐ vercel-labs/agent-skills: o repositório oficial</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Com mais de 100K instalações, vercel-labs/agent-skills inclui skills para React, Next.js, web design, TypeScript e muito mais. Mantido pela equipe do Vercel Labs.</p>
+      <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 rounded-xl border border-amber-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-amber-400 mb-3">O mais popular do ecossistema</h3>
+        <p class="text-neutral-300 text-sm">É o ponto de partida recomendado para qualquer desenvolvedor. As skills seguem as melhores práticas da especificação e são constantemente atualizadas.</p>
+      </div>
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
+        <h3 class="text-lg font-semibold text-primary mb-3"><span class="mr-2">💡</span> Conceitos-chave</h3>
+        <p class="text-neutral-300 text-sm">vercel-labs · 100K installs · React · Next.js · web design · TypeScript · referência oficial</p>
+      </div>
+    </section>
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">🔮 anthropics/skills: skills da Anthropic</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">O repositório anthropics/skills contém skills otimizadas para Claude Code, incluindo frontend-design avançado, document processing e skills que aproveitam features exclusivas.</p>
+      <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 rounded-xl border border-amber-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-amber-400 mb-3">Skills para Claude Code especificamente</h3>
+        <p class="text-neutral-300 text-sm">Skills da Anthropic usam context:fork e hooks de forma exemplar. São a melhor referência para aprender como criar skills avançadas para Claude Code.</p>
+      </div>
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
+        <h3 class="text-lg font-semibold text-primary mb-3"><span class="mr-2">💡</span> Conceitos-chave</h3>
+        <p class="text-neutral-300 text-sm">Anthropic · frontend-design · document processing · Claude-específicas · hooks · context:fork</p>
+      </div>
+    </section>
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">🔗 ComposioHQ/awesome-claude-skills</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">O repositório ComposioHQ/awesome-claude-skills foca em integrações com ferramentas externas: Linear, Notion, Slack, GitHub, Jira. Skills para fluxos de produtividade.</p>
+      <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 rounded-xl border border-amber-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-amber-400 mb-3">Integrações externas</h3>
+        <p class="text-neutral-300 text-sm">Integrações são o próximo passo depois de skills básicas. Se seu time usa Linear ou Notion, estas skills transformam o agente em um assistente de produtividade completo.</p>
+      </div>
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
+        <h3 class="text-lg font-semibold text-primary mb-3"><span class="mr-2">💡</span> Conceitos-chave</h3>
+        <p class="text-neutral-300 text-sm">integrações · Linear · Notion · Slack · GitHub · Jira · produtividade · APIs externas</p>
+      </div>
+    </section>
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">📊 Como avaliar qualidade de um repositório</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Avalie por: install count (>10K é bom, >100K é excelente), GitHub stars, data do último commit, qualidade do README, e se tem skills/.curated/.</p>
+      <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 rounded-xl border border-amber-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-amber-400 mb-3">Métricas de confiabilidade</h3>
+        <p class="text-neutral-300 text-sm">Antes de instalar skills de um repositório desconhecido, faça due diligence. Um repositório sem atualizações há 6 meses pode ter skills desatualizadas.</p>
+      </div>
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
+        <h3 class="text-lg font-semibold text-primary mb-3"><span class="mr-2">💡</span> Conceitos-chave</h3>
+        <p class="text-neutral-300 text-sm">install count · GitHub stars · frequência de commits · README quality · .curated · reputação</p>
+      </div>
+    </section>
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">🏆 Descobrindo skills no leaderboard</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">O skills.sh exibe um leaderboard com os repositórios mais instalados. Filtre por tecnologia, agente ou categoria para encontrar o que precisa rapidamente.</p>
+      <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 rounded-xl border border-amber-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-amber-400 mb-3">Navegando o skills.sh</h3>
+        <p class="text-neutral-300 text-sm">O leaderboard é a ferramenta mais eficiente para encontrar skills de qualidade. Alto install count indica que muitas pessoas confiam nessa skill.</p>
+      </div>
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
+        <h3 class="text-lg font-semibold text-primary mb-3"><span class="mr-2">💡</span> Conceitos-chave</h3>
+        <p class="text-neutral-300 text-sm">leaderboard · filtros · tecnologia · agente · descoberta eficiente · ranking</p>
+      </div>
+    </section>
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">🤝 Contribuindo com a comunidade</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Após criar skills de qualidade e testá-las, publique no GitHub e registre no skills.sh. Skills populares podem alcançar 100K+ instalações beneficiando a comunidade.</p>
+      <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 rounded-xl border border-amber-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-amber-400 mb-3">Publicando suas skills</h3>
+        <p class="text-neutral-300 text-sm">Contribuir cria um ciclo virtuoso: mais pessoas usam, mais feedback você recebe, melhores as skills ficam. Times que compartilham internamente evoluem mais rápido.</p>
+      </div>
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
+        <h3 class="text-lg font-semibold text-primary mb-3"><span class="mr-2">💡</span> Conceitos-chave</h3>
+        <p class="text-neutral-300 text-sm">publicação · contribuição · ciclo virtuoso · skills.sh registration · impacto na comunidade</p>
+      </div>
+    </section>
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-amber-900/40 via-dark-800 to-dark-800 rounded-xl border border-amber-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">✅</span> Resumo do Módulo</h2>
+        <div class="space-y-4 mb-8">
+                    <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">Com mais de 100K instalações, vercel-labs/agent-skills inclui skills para React, Next.js, web design, TypeScript e muito mais. Mantido pela equipe do Vercel Labs.</strong><span class="text-neutral-400"> — O mais popular do ecossistema</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">O repositório anthropics/skills contém skills otimizadas para Claude Code, incluindo frontend-design avançado, document processing e skills que aproveitam features exclusivas.</strong><span class="text-neutral-400"> — Skills para Claude Code especificamente</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">O repositório ComposioHQ/awesome-claude-skills foca em integrações com ferramentas externas: Linear, Notion, Slack, GitHub, Jira. Skills para fluxos de produtividade.</strong><span class="text-neutral-400"> — Integrações externas</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">Avalie por: install count (>10K é bom, >100K é excelente), GitHub stars, data do último commit, qualidade do README, e se tem skills/.curated/.</strong><span class="text-neutral-400"> — Métricas de confiabilidade</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">O skills.sh exibe um leaderboard com os repositórios mais instalados. Filtre por tecnologia, agente ou categoria para encontrar o que precisa rapidamente.</strong><span class="text-neutral-400"> — Navegando o skills.sh</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">Após criar skills de qualidade e testá-las, publique no GitHub e registre no skills.sh. Skills populares podem alcançar 100K+ instalações beneficiando a comunidade.</strong><span class="text-neutral-400"> — Publicando suas skills</span></div></div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-amber-400 mb-2">Próximo:</h3>
+          <p class="text-neutral-300">4.2 — Casos de Uso: Desenvolvimento Web</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="index.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Voltar para Trilha 4</a>
+          <a href="modulo-4-2.html" class="flex-1 text-center px-6 py-3 bg-amber-600 text-white rounded-lg font-semibold hover:bg-amber-500 transition-colors">Próximo Módulo →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="border-t border-dark-600 py-8 mt-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>Skills CLI - Do Zero ao Expert · <a href="https://inema.club" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a> · 2026</p>
+    </div>
+  </footer>
+  <script>
+    const themeToggle=document.getElementById('theme-toggle');const d=document.getElementById('theme-toggle-dark-icon');const l=document.getElementById('theme-toggle-light-icon');const h=document.documentElement;
+    if(localStorage.getItem('theme')==='light'){d.classList.remove('hidden');h.classList.remove('dark');}else{l.classList.remove('hidden');}
+    themeToggle.addEventListener('click',()=>{d.classList.toggle('hidden');l.classList.toggle('hidden');h.classList.toggle('dark');localStorage.setItem('theme',h.classList.contains('dark')?'dark':'light');});
+  </script>
+</body>
+</html>

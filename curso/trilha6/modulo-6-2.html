@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>6.2 — Internals do CLI e Contribuição | Skills CLI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#FACC15',dark:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563'}}}}}</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body{font-family:'Inter',sans-serif;}.dark body{background-color:#111827;}
+    html:not(.dark) body{background-color:#f8fafc;}html:not(.dark) .bg-dark-900{background-color:#ffffff;}html:not(.dark) .bg-dark-800{background-color:#f9fafb;}html:not(.dark) .bg-dark-700{background-color:#f3f4f6;}html:not(.dark) .bg-dark-600{background-color:#e5e7eb;}html:not(.dark) .text-neutral-100{color:#111827;}html:not(.dark) .text-neutral-300{color:#4b5563;}html:not(.dark) .text-neutral-400{color:#6b7280;}html:not(.dark) .text-neutral-500{color:#9ca3af;}html:not(.dark) .border-dark-600{border-color:#d1d5db;}
+    html:not(.dark) .text-rose-400{color:#9f1239;}html:not(.dark) .bg-rose-500\/20{background-color:rgba(225, 29, 72,0.12);}html:not(.dark) .bg-rose-500\/10{background-color:rgba(225, 29, 72,0.08);}html:not(.dark) .border-rose-500\/30{border-color:rgba(225, 29, 72,0.25);}
+    html:not(.dark) [class*="bg-gradient-to"]{background-image:none!important;}html:not(.dark) .text-primary{color:#a16207;}html:not(.dark) .bg-primary\/10{background-color:rgba(161,98,7,0.08);}html:not(.dark) .border-primary\/40{border-color:rgba(161,98,7,0.25);}html:not(.dark) .text-sky-400{color:#0369a1;}html:not(.dark) .text-yellow-400{color:#a16207;}html:not(.dark) .hover\:text-sky-300:hover{color:#0284c7;}html:not(.dark) .bg-dark-900\/95{background-color:rgba(255,255,255,0.95);}
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🧰</span><span class="font-bold text-lg hidden sm:inline">Skills CLI</span></a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1">
+          <a href="../trilha1/index.html" class="px-2 py-1.5 rounded-lg text-xs font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentos</span></a>
+          <a href="../trilha2/index.html" class="px-2 py-1.5 rounded-lg text-xs font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">CLI na Prática</span></a>
+          <a href="../trilha3/index.html" class="px-2 py-1.5 rounded-lg text-xs font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Criando Skills</span></a>
+          <a href="../trilha4/index.html" class="px-2 py-1.5 rounded-lg text-xs font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Exemplos Reais</span></a>
+          <a href="../trilha5/index.html" class="px-2 py-1.5 rounded-lg text-xs font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Agentes</span></a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-rose-400 bg-rose-500/10"><span class="sm:hidden">T6</span><span class="hidden sm:inline">Avançado</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-rose-400">Início</a><span>/</span>
+      <a href="index.html" class="hover:text-rose-400">Trilha 6</a><span>/</span>
+      <span class="text-rose-400">Módulo 6.2</span>
+    </div>
+  </nav>
+  <header class="bg-gradient-to-br from-rose-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-rose-500/20 text-rose-400 text-xs font-semibold rounded-full mb-4">MÓDULO 6.2</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">⚙️ Internals do CLI e Contribuição</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">Arquitetura do CLI, como o CLI resolve fontes, sistema de lock file, telemetria e como contribuir para o projeto open source.</p>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-rose-400">6</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-rose-400">45</div><div class="text-xs text-neutral-400">Minutos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-rose-400">Avançado</div><div class="text-xs text-neutral-400">Nível</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-rose-400">Prático</div><div class="text-xs text-neutral-400">Tipo</div></div>
+      </div>
+    </div>
+  </header>
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-rose-500/20 text-rose-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">🏗️ Arquitetura do CLI: os módulos principais</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">O CLI é TypeScript com módulos: add.ts (instalação), find.ts (descoberta), install.ts (resolução de fonte), sync.ts (atualização).</p>
+      <div class="bg-gradient-to-br from-rose-900/30 to-dark-800 rounded-xl border border-rose-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-rose-400 mb-3">Como o código é organizado</h3>
+        <p class="text-neutral-300 text-sm">Entender a arquitetura facilita contribuições. Saber qual arquivo editar para adicionar agente ou corrigir bug.</p>
+      </div>
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
+        <h3 class="text-lg font-semibold text-primary mb-3"><span class="mr-2">💡</span> Conceitos-chave</h3>
+        <p class="text-neutral-300 text-sm">TypeScript · add.ts · find.ts · install.ts · sync.ts · arquitetura modular</p>
+      </div>
+    </section>
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-rose-500/20 text-rose-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">🔍 Como o CLI resolve fontes</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Resolução: shorthand → GitHub API → clone git → symlink/copy → destino do agente. Path local: resolve diretamente.</p>
+      <div class="bg-gradient-to-br from-rose-900/30 to-dark-800 rounded-xl border border-rose-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-rose-400 mb-3">De owner/repo ao arquivo local</h3>
+        <p class="text-neutral-300 text-sm">O processo explica por que instalações de GitHub são mais lentas (API + clone) e path local é instantâneo.</p>
+      </div>
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
+        <h3 class="text-lg font-semibold text-primary mb-3"><span class="mr-2">💡</span> Conceitos-chave</h3>
+        <p class="text-neutral-300 text-sm">shorthand resolution · GitHub API · git clone · symlink · performance</p>
+      </div>
+    </section>
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-rose-500/20 text-rose-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">🔒 Sistema de lock file</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">skill-lock.json rastreia skills de projeto; local-lock.json rastreia globais. Contém: nome, fonte, método, agentes.</p>
+      <div class="bg-gradient-to-br from-rose-900/30 to-dark-800 rounded-xl border border-rose-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-rose-400 mb-3">Rastreando instalações</h3>
+        <p class="text-neutral-300 text-sm">O lock file é a fonte de verdade para list e update. Corrompido? Delete e reinstale.</p>
+      </div>
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
+        <h3 class="text-lg font-semibold text-primary mb-3"><span class="mr-2">💡</span> Conceitos-chave</h3>
+        <p class="text-neutral-300 text-sm">skill-lock.json · local-lock.json · rastreamento · fonte · método</p>
+      </div>
+    </section>
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-rose-500/20 text-rose-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">📡 Telemetria e variáveis de ambiente</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">DISABLE_TELEMETRY=1 desativa telemetria. INSTALL_INTERNAL_SKILLS=1 mostra skills internas. DEBUG=1 para logs.</p>
+      <div class="bg-gradient-to-br from-rose-900/30 to-dark-800 rounded-xl border border-rose-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-rose-400 mb-3">Configurando o CLI</h3>
+        <p class="text-neutral-300 text-sm">Em CI/CD, DISABLE_TELEMETRY=1 é recomendado para privacidade e performance.</p>
+      </div>
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
+        <h3 class="text-lg font-semibold text-primary mb-3"><span class="mr-2">💡</span> Conceitos-chave</h3>
+        <p class="text-neutral-300 text-sm">DISABLE_TELEMETRY · INSTALL_INTERNAL_SKILLS · DEBUG · variáveis de ambiente</p>
+      </div>
+    </section>
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-rose-500/20 text-rose-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">➕ Como adicionar suporte a um novo agente</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Para adicionar agente: definir caminhos de instalação, método de detecção, formato de arquivo. Pull request para vercel-labs/skills.</p>
+      <div class="bg-gradient-to-br from-rose-900/30 to-dark-800 rounded-xl border border-rose-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-rose-400 mb-3">Contribuindo com novos agentes</h3>
+        <p class="text-neutral-300 text-sm">Com 50+ agentes suportados, o processo está documentado. Adicionar agente é acessível para contribuidores novos.</p>
+      </div>
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
+        <h3 class="text-lg font-semibold text-primary mb-3"><span class="mr-2">💡</span> Conceitos-chave</h3>
+        <p class="text-neutral-300 text-sm">novos agentes · caminhos · detecção · Pull Request · contribuição</p>
+      </div>
+    </section>
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-rose-500/20 text-rose-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">🤝 Como contribuir para o projeto open source</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Processo: fork, branch feature/, mudanças, testes, PR. Issues good first issue são o melhor começo.</p>
+      <div class="bg-gradient-to-br from-rose-900/30 to-dark-800 rounded-xl border border-rose-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-rose-400 mb-3">Começando a contribuir</h3>
+        <p class="text-neutral-300 text-sm">O Skills CLI é projeto em crescimento. Contribuições têm impacto real em ecossistema crescente.</p>
+      </div>
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
+        <h3 class="text-lg font-semibold text-primary mb-3"><span class="mr-2">💡</span> Conceitos-chave</h3>
+        <p class="text-neutral-300 text-sm">fork · branch feature/ · PR · good first issue · testes · impacto</p>
+      </div>
+    </section>
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-rose-900/40 via-dark-800 to-dark-800 rounded-xl border border-rose-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">✅</span> Resumo do Módulo</h2>
+        <div class="space-y-4 mb-8">
+                    <div class="flex items-start space-x-3"><span class="text-rose-400 mt-1">✓</span><div><strong class="text-white">O CLI é TypeScript com módulos: add.ts (instalação), find.ts (descoberta), install.ts (resolução de fonte), sync.ts (atualização).</strong><span class="text-neutral-400"> — Como o código é organizado</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-rose-400 mt-1">✓</span><div><strong class="text-white">Resolução: shorthand → GitHub API → clone git → symlink/copy → destino do agente. Path local: resolve diretamente.</strong><span class="text-neutral-400"> — De owner/repo ao arquivo local</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-rose-400 mt-1">✓</span><div><strong class="text-white">skill-lock.json rastreia skills de projeto; local-lock.json rastreia globais. Contém: nome, fonte, método, agentes.</strong><span class="text-neutral-400"> — Rastreando instalações</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-rose-400 mt-1">✓</span><div><strong class="text-white">DISABLE_TELEMETRY=1 desativa telemetria. INSTALL_INTERNAL_SKILLS=1 mostra skills internas. DEBUG=1 para logs.</strong><span class="text-neutral-400"> — Configurando o CLI</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-rose-400 mt-1">✓</span><div><strong class="text-white">Para adicionar agente: definir caminhos de instalação, método de detecção, formato de arquivo. Pull request para vercel-labs/skills.</strong><span class="text-neutral-400"> — Contribuindo com novos agentes</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-rose-400 mt-1">✓</span><div><strong class="text-white">Processo: fork, branch feature/, mudanças, testes, PR. Issues good first issue são o melhor começo.</strong><span class="text-neutral-400"> — Começando a contribuir</span></div></div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-rose-400 mb-2">Próximo:</h3>
+          <p class="text-neutral-300">Você completou o curso Skills CLI! Parabéns! 🎉</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="modulo-6-1.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Módulo 6.1</a>
+          <a href="../../index.html" class="flex-1 text-center px-6 py-3 bg-rose-600 text-white rounded-lg font-semibold hover:bg-rose-500 transition-colors">Início do Curso →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="border-t border-dark-600 py-8 mt-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>Skills CLI - Do Zero ao Expert · <a href="https://inema.club" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a> · 2026</p>
+    </div>
+  </footer>
+  <script>
+    const tt=document.getElementById('theme-toggle');const di=document.getElementById('theme-toggle-dark-icon');const li=document.getElementById('theme-toggle-light-icon');const h=document.documentElement;
+    if(localStorage.getItem('theme')==='light'){di.classList.remove('hidden');h.classList.remove('dark');}else{li.classList.remove('hidden');}
+    tt.addEventListener('click',()=>{di.classList.toggle('hidden');li.classList.toggle('hidden');h.classList.toggle('dark');localStorage.setItem('theme',h.classList.contains('dark')?'dark':'light');});
+  </script>
+</body>
+</html>

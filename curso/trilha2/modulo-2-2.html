@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2.2 — skills find, list e update | Skills CLI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#FACC15',dark:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563'}}}}}</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body{font-family:'Inter',sans-serif;}.dark body{background-color:#111827;}
+    html:not(.dark) body{background-color:#f8fafc;}html:not(.dark) .bg-dark-900{background-color:#ffffff;}html:not(.dark) .bg-dark-800{background-color:#f9fafb;}html:not(.dark) .bg-dark-700{background-color:#f3f4f6;}html:not(.dark) .bg-dark-600{background-color:#e5e7eb;}html:not(.dark) .text-neutral-100{color:#111827;}html:not(.dark) .text-neutral-300{color:#4b5563;}html:not(.dark) .text-neutral-400{color:#6b7280;}html:not(.dark) .text-neutral-500{color:#9ca3af;}html:not(.dark) .border-dark-600{border-color:#d1d5db;}
+    html:not(.dark) .text-blue-400{color:#2563eb;}html:not(.dark) .bg-blue-500\/20{background-color:rgba(37,99,235,0.12);}html:not(.dark) .border-blue-500\/30{border-color:rgba(37,99,235,0.25);}
+    html:not(.dark) [class*="bg-gradient-to"]{background-image:none!important;}html:not(.dark) .text-primary{color:#a16207;}html:not(.dark) .bg-primary\/10{background-color:rgba(161,98,7,0.08);}html:not(.dark) .border-primary\/40{border-color:rgba(161,98,7,0.25);}html:not(.dark) .text-sky-400{color:#0369a1;}html:not(.dark) .text-yellow-400{color:#a16207;}html:not(.dark) .hover\:text-sky-300:hover{color:#0284c7;}html:not(.dark) .bg-dark-900\/95{background-color:rgba(255,255,255,0.95);}
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🧰</span><span class="font-bold text-lg hidden sm:inline">Skills CLI</span></a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-2">
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-blue-400 bg-blue-500/20">T2 CLI na Prática</a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-blue-400">Início</a><span>/</span>
+      <a href="index.html" class="hover:text-blue-400">Trilha 2</a><span>/</span>
+      <span class="text-blue-400">Módulo 2.2</span>
+    </div>
+  </nav>
+
+  <header class="bg-gradient-to-br from-blue-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-semibold rounded-full mb-4">MÓDULO 2.2</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🔍 skills find, list e update</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">Descubra skills no ecossistema, audite o que está instalado e mantenha tudo atualizado. O fluxo de gestão contínua de skills.</p>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">6</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">40</div><div class="text-xs text-neutral-400">Minutos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">Básico</div><div class="text-xs text-neutral-400">Nível</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">Prático</div><div class="text-xs text-neutral-400">Tipo</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">🔎 skills find: Busca Interativa</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        O comando <strong class="text-blue-400">npx skills find</strong> busca skills no ecossistema público do skills.sh. Sem argumentos, abre uma interface interativa estilo fzf. Com keyword, filtra diretamente.
+      </p>
+      <div class="bg-dark-800 border border-dark-600 rounded-xl p-6 mb-6 font-mono text-sm">
+        <pre class="text-neutral-300 leading-relaxed"><span class="text-neutral-500"># Busca interativa (abre fzf-like UI)</span>
+<span class="text-blue-400">npx skills find</span>
+
+<span class="text-neutral-500"># Busca por keyword</span>
+<span class="text-blue-400">npx skills find react</span>
+<span class="text-blue-400">npx skills find typescript</span>
+<span class="text-blue-400">npx skills find "code review"</span>
+
+<span class="text-neutral-500"># Resultado:</span>
+<span class="text-neutral-400">→ vercel-labs/agent-skills: react-best-practices (100K installs)
+→ anthropics/skills: frontend-design (50K installs)
+→ comunidade/react-skills: react-hooks (30K installs)</span></pre>
+      </div>
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-3">O que o find mostra</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li class="flex items-start space-x-2"><span class="text-blue-400">•</span><span><strong>Nome da skill e repositório</strong> — Onde encontrar e instalar</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400">•</span><span><strong>Install count</strong> — Popularidade como indicador de qualidade</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400">•</span><span><strong>Description</strong> — O que a skill faz</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400">•</span><span><strong>Agentes compatíveis</strong> — Para quais agentes funciona</span></li>
+        </ul>
+      </div>
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
+        <h3 class="text-lg font-semibold text-primary mb-3"><span class="mr-2">💡</span> Regra de ouro</h3>
+        <p class="text-neutral-300 text-sm">Antes de criar uma skill, sempre execute <code>npx skills find [sua-necessidade]</code>. Pode já existir uma skill perfeita. Reutilizar é sempre melhor que criar.</p>
+      </div>
+    </section>
+
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">📋 skills list: Inventário de Skills</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        O comando <strong class="text-blue-400">npx skills list</strong> mostra todas as skills instaladas, organizadas por escopo (projeto/global) e por agente. Essencial para auditar periodicamente o que está configurado.
+      </p>
+      <div class="bg-dark-800 border border-dark-600 rounded-xl p-6 mb-6 font-mono text-sm">
+        <pre class="text-neutral-300 leading-relaxed"><span class="text-neutral-500"># Listar tudo</span>
+<span class="text-blue-400">npx skills list</span>
+
+<span class="text-neutral-400">📁 Projeto (.claude/skills/)
+  ✓ react-best-practices [symlink] ← vercel-labs/agent-skills
+  ✓ nextjs-routing [symlink] ← vercel-labs/agent-skills
+  ✓ deploy-interno [copy] ← ./internal-skills
+
+🌍 Global (~/.claude/skills/)
+  ✓ find-skills [symlink] ← vercel-labs/agent-skills
+  ✓ meu-estilo [copy] ← local</span>
+
+<span class="text-neutral-500"># Só globais</span>
+<span class="text-blue-400">npx skills list -g</span>
+
+<span class="text-neutral-500"># Só projeto</span>
+<span class="text-blue-400">npx skills list -p</span></pre>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6">
+          <h3 class="text-lg font-semibold text-blue-400 mb-3">Quando auditar</h3>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-blue-400">•</span><span>Ao adicionar um novo desenvolvedor ao time</span></li>
+            <li class="flex items-start space-x-2"><span class="text-blue-400">•</span><span>Antes de uma release importante</span></li>
+            <li class="flex items-start space-x-2"><span class="text-blue-400">•</span><span>Quando o agente está gerando código inconsistente</span></li>
+            <li class="flex items-start space-x-2"><span class="text-blue-400">•</span><span>Mensalmente, como boa prática</span></li>
+          </ul>
+        </div>
+        <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
+          <h3 class="text-lg font-semibold text-primary mb-3"><span class="mr-2">💡</span> Dica de equipe</h3>
+          <p class="text-neutral-300 text-sm">Adicione <code>npx skills list</code> ao seu README de setup do projeto. Novos devs saberão exatamente quais skills o time usa.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">⬆️ skills update: Mantendo Atualizado</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Skills evoluem. A comunidade melhora continuamente as skills populares. O comando <strong class="text-blue-400">npx skills update</strong> sincroniza suas skills com as versões mais recentes dos repositórios fonte.
+      </p>
+      <div class="bg-dark-800 border border-dark-600 rounded-xl p-6 mb-6 font-mono text-sm">
+        <pre class="text-neutral-300 leading-relaxed"><span class="text-neutral-500"># Atualizar todas as skills</span>
+<span class="text-blue-400">npx skills update</span>
+
+<span class="text-neutral-500"># Atualizar skill específica</span>
+<span class="text-blue-400">npx skills update react-best-practices</span>
+
+<span class="text-neutral-500"># Atualizar só globais</span>
+<span class="text-blue-400">npx skills update -g</span>
+
+<span class="text-neutral-500"># Resultado:</span>
+<span class="text-emerald-400">✓ react-best-practices: v1.2 → v1.3 (3 linhas alteradas)
+✓ nextjs-routing: já está atualizado
+✓ deploy-interno: atualizado (cópia local)</span></pre>
+      </div>
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-3">Como o update funciona por método</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="bg-dark-700 rounded-lg p-4">
+            <h4 class="font-semibold text-white mb-2">🔗 Symlinks</h4>
+            <p class="text-neutral-300 text-sm">Faz <code>git pull</code> no repositório fonte clonado. Todos os symlinks atualizam automaticamente pois apontam para a mesma fonte.</p>
+          </div>
+          <div class="bg-dark-700 rounded-lg p-4">
+            <h4 class="font-semibold text-white mb-2">📋 Cópias</h4>
+            <p class="text-neutral-300 text-sm">Baixa a versão mais recente e substitui as cópias locais. Cada cópia é atualizada individualmente.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">🗂️ Controlando Escopo com -g e -p</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        As flags <strong class="text-blue-400">-g</strong> e <strong class="text-blue-400">-p</strong> são transversais: funcionam com list, update e remove. Sem flag, os comandos operam em ambos os escopos simultaneamente.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <div class="bg-dark-800 border border-dark-600 rounded-xl p-5 text-center">
+          <div class="text-2xl mb-2">📁</div>
+          <code class="text-blue-400 text-sm">-p / --project</code>
+          <p class="text-neutral-400 text-xs mt-2">Apenas skills do projeto (./ path)</p>
+        </div>
+        <div class="bg-dark-800 border border-dark-600 rounded-xl p-5 text-center">
+          <div class="text-2xl mb-2">🌍</div>
+          <code class="text-blue-400 text-sm">-g / --global</code>
+          <p class="text-neutral-400 text-xs mt-2">Apenas skills globais (~/ path)</p>
+        </div>
+        <div class="bg-dark-800 border border-dark-600 rounded-xl p-5 text-center">
+          <div class="text-2xl mb-2">🔄</div>
+          <code class="text-blue-400 text-sm">(sem flag)</code>
+          <p class="text-neutral-400 text-xs mt-2">Ambos os escopos</p>
+        </div>
+      </div>
+      <div class="bg-dark-800 border border-dark-600 rounded-xl p-6 font-mono text-sm">
+        <pre class="text-neutral-300 leading-relaxed"><span class="text-neutral-500"># Update apenas globais (não toca no projeto)</span>
+<span class="text-blue-400">npx skills update -g</span>
+
+<span class="text-neutral-500"># List apenas projeto (para auditoria de PR)</span>
+<span class="text-blue-400">npx skills list -p</span>
+
+<span class="text-neutral-500"># Remove apenas globais</span>
+<span class="text-blue-400">npx skills remove -g skill-obsoleta</span></pre>
+      </div>
+    </section>
+
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">🔄 Symlink vs Copy: Quando Usar Cada Um</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        A escolha entre <strong class="text-blue-400">symlink</strong> (padrão) e <strong class="text-blue-400">copy</strong> (com --copy) afeta como as skills são armazenadas e atualizadas. Entender a diferença evita problemas em ambientes específicos.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">🔗 Symlink (Recomendado)</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Uma fonte canônica compartilhada</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Update faz git pull na fonte</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Menos espaço em disco</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Todos os agentes veem a mesma versão</span></li>
+          </ul>
+        </div>
+        <div class="bg-amber-900/20 rounded-xl border border-amber-500/30 p-6">
+          <h4 class="font-bold text-amber-400 mb-4">📋 Copy (--copy)</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Funciona em Windows (symlinks limitados)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Funciona em filesystems remotos/NFS</span></li>
+            <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Independente da fonte após instalação</span></li>
+            <li class="flex items-start space-x-2"><span class="text-amber-400">→</span><span>Update substitui as cópias manualmente</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="bg-dark-800 border border-dark-600 rounded-xl p-6 font-mono text-sm">
+        <div class="text-neutral-500 mb-2"># Usar copy quando symlinks não funcionam</div>
+        <div class="text-blue-400">npx skills add --copy vercel-labs/agent-skills</div>
+      </div>
+    </section>
+
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">🎮 Fluxo Completo de Gestão de Skills</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Combinando <strong class="text-blue-400">find, add, list e update</strong>, você tem um ciclo completo de gestão de conhecimento do agente. Aqui está o fluxo recomendado para times:
+      </p>
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Descoberta</h4>
+            <code class="text-blue-400 text-sm">npx skills find [tecnologia]</code>
+            <p class="text-neutral-400 text-sm mt-1">Encontre skills relevantes antes de criar do zero</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Instalação</h4>
+            <code class="text-blue-400 text-sm">npx skills add owner/repo</code>
+            <p class="text-neutral-400 text-sm mt-1">Instale as skills encontradas</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Auditoria</h4>
+            <code class="text-blue-400 text-sm">npx skills list</code>
+            <p class="text-neutral-400 text-sm mt-1">Periodicamente, verifique o que está instalado</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">4</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Manutenção</h4>
+            <code class="text-blue-400 text-sm">npx skills update</code>
+            <p class="text-neutral-400 text-sm mt-1">Semanalmente ou antes de sprints importantes</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-blue-900/40 via-dark-800 to-dark-800 rounded-xl border border-blue-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">✅</span> Resumo do Módulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">skills find [query]</strong><span class="text-neutral-400"> — Busca no diretório público. Sem query: interface interativa.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">skills list [-g/-p]</strong><span class="text-neutral-400"> — Inventário completo por escopo e agente</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">skills update [nome]</strong><span class="text-neutral-400"> — Atualiza todas ou uma skill específica</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Flags -g e -p</strong><span class="text-neutral-400"> — Filtram por escopo em list, update e remove</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Symlink vs Copy</strong><span class="text-neutral-400"> — Symlink recomendado. Copy para Windows e filesystems remotos.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Fluxo de gestão</strong><span class="text-neutral-400"> — find → add → list → update. Ciclo contínuo de manutenção.</span></div></div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-blue-400 mb-2">Próximo Módulo:</h3>
+          <p class="text-neutral-300">2.3 — 🗑️ skills remove e init — Remoção precisa e criação do seu primeiro SKILL.md</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="modulo-2-1.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Módulo 2.1</a>
+          <a href="modulo-2-3.html" class="flex-1 text-center px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-500 transition-colors">Próximo Módulo →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>Skills CLI - Do Zero ao Expert · <a href="https://inema.club" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a> · 2026</p>
+    </div>
+  </footer>
+  <script>
+    const themeToggle=document.getElementById('theme-toggle');const themeToggleDarkIcon=document.getElementById('theme-toggle-dark-icon');const themeToggleLightIcon=document.getElementById('theme-toggle-light-icon');const html=document.documentElement;
+    if(localStorage.getItem('theme')==='light'){themeToggleDarkIcon.classList.remove('hidden');html.classList.remove('dark');}else{themeToggleLightIcon.classList.remove('hidden');}
+    themeToggle.addEventListener('click',()=>{themeToggleDarkIcon.classList.toggle('hidden');themeToggleLightIcon.classList.toggle('hidden');html.classList.toggle('dark');localStorage.setItem('theme',html.classList.contains('dark')?'dark':'light');});
+  </script>
+</body>
+</html>
