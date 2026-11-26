@@ -46,7 +46,7 @@
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <span class="inline-block px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-semibold rounded-full mb-4">MÓDULO 2.2</span>
       <h1 class="text-3xl sm:text-4xl font-bold mb-4">🔍 skills find, list e update</h1>
-      <p class="text-lg text-neutral-400 max-w-3xl">Descubra skills no ecossistema, audite o que está instalado e mantenha tudo atualizado. O fluxo de gestão contínua de skills.</p>
+      <p class="text-lg text-neutral-400 max-w-3xl">Descubra skills no ecossistema, audite o que está instalado e mantenha tudo atualizado. O fluxo de gestêo contínua de skills.</p>
       <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
         <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">6</div><div class="text-xs text-neutral-400">Tópicos</div></div>
         <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">40</div><div class="text-xs text-neutral-400">Minutos</div></div>
@@ -134,7 +134,7 @@
         </div>
         <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
           <h3 class="text-lg font-semibold text-primary mb-3"><span class="mr-2">💡</span> Dica de equipe</h3>
-          <p class="text-neutral-300 text-sm">Adicione <code>npx skills list</code> ao seu README de setup do projeto. Novos devs saberão exatamente quais skills o time usa.</p>
+          <p class="text-neutral-300 text-sm">Adicione <code>npx skills list</code> ao seu README de setup do projeto. Novos devs saberêo exatamente quais skills o time usa.</p>
         </div>
       </div>
     </section>
@@ -171,7 +171,7 @@
           </div>
           <div class="bg-dark-700 rounded-lg p-4">
             <h4 class="font-semibold text-white mb-2">📋 Cópias</h4>
-            <p class="text-neutral-300 text-sm">Baixa a versão mais recente e substitui as cópias locais. Cada cópia é atualizada individualmente.</p>
+            <p class="text-neutral-300 text-sm">Baixa a versêo mais recente e substitui as cópias locais. Cada cópia é atualizada individualmente.</p>
           </div>
         </div>
       </div>
@@ -183,7 +183,7 @@
         <h2 class="text-2xl font-bold">🗂️ Controlando Escopo com -g e -p</h2>
       </div>
       <p class="text-neutral-300 mb-6 leading-relaxed">
-        As flags <strong class="text-blue-400">-g</strong> e <strong class="text-blue-400">-p</strong> são transversais: funcionam com list, update e remove. Sem flag, os comandos operam em ambos os escopos simultaneamente.
+        As flags <strong class="text-blue-400">-g</strong> e <strong class="text-blue-400">-p</strong> sêo transversais: funcionam com list, update e remove. Sem flag, os comandos operam em ambos os escopos simultaneamente.
       </p>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
         <div class="bg-dark-800 border border-dark-600 rounded-xl p-5 text-center">
@@ -203,7 +203,7 @@
         </div>
       </div>
       <div class="bg-dark-800 border border-dark-600 rounded-xl p-6 font-mono text-sm">
-        <pre class="text-neutral-300 leading-relaxed"><span class="text-neutral-500"># Update apenas globais (não toca no projeto)</span>
+        <pre class="text-neutral-300 leading-relaxed"><span class="text-neutral-500"># Update apenas globais (nêo toca no projeto)</span>
 <span class="text-blue-400">npx skills update -g</span>
 
 <span class="text-neutral-500"># List apenas projeto (para auditoria de PR)</span>
@@ -220,7 +220,7 @@
         <h2 class="text-2xl font-bold">🔄 Symlink vs Copy: Quando Usar Cada Um</h2>
       </div>
       <p class="text-neutral-300 mb-6 leading-relaxed">
-        A escolha entre <strong class="text-blue-400">symlink</strong> (padrão) e <strong class="text-blue-400">copy</strong> (com --copy) afeta como as skills são armazenadas e atualizadas. Entender a diferença evita problemas em ambientes específicos.
+        A escolha entre <strong class="text-blue-400">symlink</strong> (padrêo) e <strong class="text-blue-400">copy</strong> (com --copy) afeta como as skills sêo armazenadas e atualizadas. Entender a diferença evita problemas em ambientes específicos.
       </p>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
         <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
@@ -229,7 +229,7 @@
             <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Uma fonte canônica compartilhada</span></li>
             <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Update faz git pull na fonte</span></li>
             <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Menos espaço em disco</span></li>
-            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Todos os agentes veem a mesma versão</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Todos os agentes veem a mesma versêo</span></li>
           </ul>
         </div>
         <div class="bg-amber-900/20 rounded-xl border border-amber-500/30 p-6">
@@ -237,13 +237,13 @@
           <ul class="space-y-2 text-neutral-300 text-sm">
             <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Funciona em Windows (symlinks limitados)</span></li>
             <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Funciona em filesystems remotos/NFS</span></li>
-            <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Independente da fonte após instalação</span></li>
+            <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Independente da fonte após instalaçêo</span></li>
             <li class="flex items-start space-x-2"><span class="text-amber-400">→</span><span>Update substitui as cópias manualmente</span></li>
           </ul>
         </div>
       </div>
       <div class="bg-dark-800 border border-dark-600 rounded-xl p-6 font-mono text-sm">
-        <div class="text-neutral-500 mb-2"># Usar copy quando symlinks não funcionam</div>
+        <div class="text-neutral-500 mb-2"># Usar copy quando symlinks nêo funcionam</div>
         <div class="text-blue-400">npx skills add --copy vercel-labs/agent-skills</div>
       </div>
     </section>
@@ -251,10 +251,10 @@
     <section id="topico-6" class="mb-16">
       <div class="flex items-center space-x-4 mb-6">
         <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">6</span>
-        <h2 class="text-2xl font-bold">🎮 Fluxo Completo de Gestão de Skills</h2>
+        <h2 class="text-2xl font-bold">🎮 Fluxo Completo de Gestêo de Skills</h2>
       </div>
       <p class="text-neutral-300 mb-6 leading-relaxed">
-        Combinando <strong class="text-blue-400">find, add, list e update</strong>, você tem um ciclo completo de gestão de conhecimento do agente. Aqui está o fluxo recomendado para times:
+        Combinando <strong class="text-blue-400">find, add, list e update</strong>, você tem um ciclo completo de gestêo de conhecimento do agente. Aqui está o fluxo recomendado para times:
       </p>
       <div class="space-y-4 mb-6">
         <div class="flex items-start space-x-4">
@@ -268,7 +268,7 @@
         <div class="flex items-start space-x-4">
           <div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">2</span></div>
           <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
-            <h4 class="font-semibold text-white mb-1">Instalação</h4>
+            <h4 class="font-semibold text-white mb-1">Instalaçêo</h4>
             <code class="text-blue-400 text-sm">npx skills add owner/repo</code>
             <p class="text-neutral-400 text-sm mt-1">Instale as skills encontradas</p>
           </div>
@@ -284,7 +284,7 @@
         <div class="flex items-start space-x-4">
           <div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">4</span></div>
           <div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
-            <h4 class="font-semibold text-white mb-1">Manutenção</h4>
+            <h4 class="font-semibold text-white mb-1">Manutençêo</h4>
             <code class="text-blue-400 text-sm">npx skills update</code>
             <p class="text-neutral-400 text-sm mt-1">Semanalmente ou antes de sprints importantes</p>
           </div>
@@ -301,11 +301,11 @@
           <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">skills update [nome]</strong><span class="text-neutral-400"> — Atualiza todas ou uma skill específica</span></div></div>
           <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Flags -g e -p</strong><span class="text-neutral-400"> — Filtram por escopo em list, update e remove</span></div></div>
           <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Symlink vs Copy</strong><span class="text-neutral-400"> — Symlink recomendado. Copy para Windows e filesystems remotos.</span></div></div>
-          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Fluxo de gestão</strong><span class="text-neutral-400"> — find → add → list → update. Ciclo contínuo de manutenção.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Fluxo de gestêo</strong><span class="text-neutral-400"> — find → add → list → update. Ciclo contínuo de manutençêo.</span></div></div>
         </div>
         <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
           <h3 class="font-semibold text-blue-400 mb-2">Próximo Módulo:</h3>
-          <p class="text-neutral-300">2.3 — 🗑️ skills remove e init — Remoção precisa e criação do seu primeiro SKILL.md</p>
+          <p class="text-neutral-300">2.3 — 🗑️ skills remove e init — Remoçêo precisa e criaçêo do seu primeiro SKILL.md</p>
         </div>
         <div class="flex flex-col sm:flex-row gap-4">
           <a href="modulo-2-1.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Módulo 2.1</a>

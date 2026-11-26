@@ -83,11 +83,11 @@
       <p class="text-neutral-300 mb-6 leading-relaxed">O campo allowed-tools lista as ferramentas que o agente pode usar quando esta skill está ativa. Funciona em Claude Code, Cursor, Copilot e a maioria dos agentes.</p>
       <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
         <h3 class="text-lg font-semibold text-purple-400 mb-3">Controle de permissões</h3>
-        <p class="text-neutral-300 text-sm">Restringir ferramentas é essencial para skills de segurança: uma skill de code review não deve executar código, apenas ler. allowed-tools garante isso.</p>
+        <p class="text-neutral-300 text-sm">Restringir ferramentas é essencial para skills de segurança: uma skill de code review nêo deve executar código, apenas ler. allowed-tools garante isso.</p>
       </div>
       <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
         <h3 class="text-lg font-semibold text-primary mb-3"><span class="mr-2">💡</span> Conceitos-chave</h3>
-        <p class="text-neutral-300 text-sm">lista de ferramentas · permissões · segurança · Read · Write · Bash · restrição</p>
+        <p class="text-neutral-300 text-sm">lista de ferramentas · permissões · segurança · Read · Write · Bash · restriçêo</p>
       </div>
     </section>
     <section id="topico-3" class="mb-16">
@@ -95,10 +95,10 @@
         <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">3</span>
         <h2 class="text-2xl font-bold">⚡ context: fork no Claude Code</h2>
       </div>
-      <p class="text-neutral-300 mb-6 leading-relaxed">context: fork cria uma subconversa isolada para executar a skill. Mudanças de contexto não afetam a conversa principal. Feature exclusiva do Claude Code.</p>
+      <p class="text-neutral-300 mb-6 leading-relaxed">context: fork cria uma subconversa isolada para executar a skill. Mudanças de contexto nêo afetam a conversa principal. Feature exclusiva do Claude Code.</p>
       <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
         <h3 class="text-lg font-semibold text-purple-400 mb-3">Contexto isolado</h3>
-        <p class="text-neutral-300 text-sm">context: fork é poderoso para skills de transformação de código: a skill opera em contexto isolado e retorna apenas o resultado, sem poluir o histórico principal.</p>
+        <p class="text-neutral-300 text-sm">context: fork é poderoso para skills de transformaçêo de código: a skill opera em contexto isolado e retorna apenas o resultado, sem poluir o histórico principal.</p>
       </div>
       <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
         <h3 class="text-lg font-semibold text-primary mb-3"><span class="mr-2">💡</span> Conceitos-chave</h3>
@@ -108,16 +108,16 @@
     <section id="topico-4" class="mb-16">
       <div class="flex items-center space-x-4 mb-6">
         <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">4</span>
-        <h2 class="text-2xl font-bold">🎣 Hooks: automação com eventos</h2>
+        <h2 class="text-2xl font-bold">🎣 Hooks: automaçêo com eventos</h2>
       </div>
       <p class="text-neutral-300 mb-6 leading-relaxed">Hooks executam código automaticamente quando eventos específicos ocorrem: pre-tool (antes de usar ferramenta), post-tool (depois), pre-compact (antes de compactar contexto).</p>
       <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
         <h3 class="text-lg font-semibold text-purple-400 mb-3">Ações automáticas por evento</h3>
-        <p class="text-neutral-300 text-sm">Hooks são a feature mais poderosa das skills avançadas. Use pre-tool para validar antes de executar, post-tool para registrar ações, pre-compact para salvar estado.</p>
+        <p class="text-neutral-300 text-sm">Hooks sêo a feature mais poderosa das skills avançadas. Use pre-tool para validar antes de executar, post-tool para registrar ações, pre-compact para salvar estado.</p>
       </div>
       <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
         <h3 class="text-lg font-semibold text-primary mb-3"><span class="mr-2">💡</span> Conceitos-chave</h3>
-        <p class="text-neutral-300 text-sm">pre-tool · post-tool · pre-compact · Claude Code · Cline · automação por evento</p>
+        <p class="text-neutral-300 text-sm">pre-tool · post-tool · pre-compact · Claude Code · Cline · automaçêo por evento</p>
       </div>
     </section>
     <section id="topico-5" class="mb-16">
@@ -143,11 +143,11 @@
       <p class="text-neutral-300 mb-6 leading-relaxed">Use allowed-tools para o que você quer suportar em todos. Use context:fork e hooks em skills marcadas como Claude-específicas. Separe em subpastas por nível de compatibilidade.</p>
       <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
         <h3 class="text-lg font-semibold text-purple-400 mb-3">Escrevendo para múltiplos agentes</h3>
-        <p class="text-neutral-300 text-sm">Skills em .claude/skills/ podem usar todas as features do Claude Code. Skills em skills/ devem ser compatíveis com todos. Organização comunica compatibilidade esperada.</p>
+        <p class="text-neutral-300 text-sm">Skills em .claude/skills/ podem usar todas as features do Claude Code. Skills em skills/ devem ser compatíveis com todos. Organizaçêo comunica compatibilidade esperada.</p>
       </div>
       <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
         <h3 class="text-lg font-semibold text-primary mb-3"><span class="mr-2">💡</span> Conceitos-chave</h3>
-        <p class="text-neutral-300 text-sm">organização por compatibilidade · .claude/skills/ · skills universais · comunicação de requisitos</p>
+        <p class="text-neutral-300 text-sm">organizaçêo por compatibilidade · .claude/skills/ · skills universais · comunicaçêo de requisitos</p>
       </div>
     </section>
     <section class="mb-12">
@@ -156,7 +156,7 @@
         <div class="space-y-4 mb-8">
                     <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">metadata.internal: true oculta a skill de npx skills find e do diretório skills.sh. Requer INSTALL_INTERNAL_SKILLS=1 para instalar. Ideal para skills de processos confidenciais.</strong><span class="text-neutral-400"> — Controle fino de visibilidade</span></div></div>
           <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">O campo allowed-tools lista as ferramentas que o agente pode usar quando esta skill está ativa. Funciona em Claude Code, Cursor, Copilot e a maioria dos agentes.</strong><span class="text-neutral-400"> — Controle de permissões</span></div></div>
-          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">context: fork cria uma subconversa isolada para executar a skill. Mudanças de contexto não afetam a conversa principal. Feature exclusiva do Claude Code.</strong><span class="text-neutral-400"> — Contexto isolado</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">context: fork cria uma subconversa isolada para executar a skill. Mudanças de contexto nêo afetam a conversa principal. Feature exclusiva do Claude Code.</strong><span class="text-neutral-400"> — Contexto isolado</span></div></div>
           <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Hooks executam código automaticamente quando eventos específicos ocorrem: pre-tool (antes de usar ferramenta), post-tool (depois), pre-compact (antes de compactar contexto).</strong><span class="text-neutral-400"> — Ações automáticas por evento</span></div></div>
           <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Features básicas (name, description, corpo) funcionam em todos os 50+ agentes. allowed-tools em quase todos. context:fork apenas Claude Code. Hooks: Claude Code e Cline.</strong><span class="text-neutral-400"> — O que funciona em cada agente</span></div></div>
           <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Use allowed-tools para o que você quer suportar em todos. Use context:fork e hooks em skills marcadas como Claude-específicas. Separe em subpastas por nível de compatibilidade.</strong><span class="text-neutral-400"> — Escrevendo para múltiplos agentes</span></div></div>

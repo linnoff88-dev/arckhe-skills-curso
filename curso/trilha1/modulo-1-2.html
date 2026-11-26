@@ -103,7 +103,7 @@
         <p class="text-neutral-500 mb-3 font-sans text-xs">Estrutura anotada de um SKILL.md completo:</p>
         <pre class="text-neutral-300 leading-loose"><span class="text-emerald-400">---</span>                          <span class="text-neutral-500"># Início do frontmatter</span>
 <span class="text-blue-400">name</span>: minha-skill            <span class="text-neutral-500"># OBRIGATÓRIO: identificador</span>
-<span class="text-blue-400">description</span>: O que faz e     <span class="text-neutral-500"># OBRIGATÓRIO: gatilho de ativação</span>
+<span class="text-blue-400">description</span>: O que faz e     <span class="text-neutral-500"># OBRIGATÓRIO: gatilho de ativaçêo</span>
   quando usar
 <span class="text-blue-400">metadata</span>:                    <span class="text-neutral-500"># OPCIONAL</span>
   <span class="text-blue-400">internal</span>: true             <span class="text-neutral-500"># ocultar da descoberta</span>
@@ -123,7 +123,7 @@ Instruções para o agente.    <span class="text-neutral-500"># Corpo livre em M
       </div>
       <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6">
         <h3 class="text-lg font-semibold text-emerald-400 mb-3">Por que essa estrutura?</h3>
-        <p class="text-neutral-300 text-sm">O frontmatter permite que o CLI processe os metadados sem depender de parsing de Markdown. O corpo em Markdown é lido pelo agente diretamente. Essa separação garante compatibilidade: o CLI usa o YAML, o agente usa o Markdown.</p>
+        <p class="text-neutral-300 text-sm">O frontmatter permite que o CLI processe os metadados sem depender de parsing de Markdown. O corpo em Markdown é lido pelo agente diretamente. Essa separaçêo garante compatibilidade: o CLI usa o YAML, o agente usa o Markdown.</p>
       </div>
     </section>
 
@@ -160,7 +160,7 @@ Instruções para o agente.    <span class="text-neutral-500"># Corpo livre em M
       </div>
       <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
         <h3 class="text-lg font-semibold text-primary mb-3"><span class="mr-2">💡</span> Dica de Nomenclatura</h3>
-        <p class="text-neutral-300 text-sm">Use o padrão <strong>[tecnologia]-[o-que-faz]</strong>. Exemplos: <code>react-hooks</code>, <code>typescript-strict</code>, <code>docker-security</code>. Isso facilita encontrar a skill com <code>npx skills list</code> e comunicar seu propósito a outros membros do time.</p>
+        <p class="text-neutral-300 text-sm">Use o padrêo <strong>[tecnologia]-[o-que-faz]</strong>. Exemplos: <code>react-hooks</code>, <code>typescript-strict</code>, <code>docker-security</code>. Isso facilita encontrar a skill com <code>npx skills list</code> e comunicar seu propósito a outros membros do time.</p>
       </div>
     </section>
 
@@ -168,21 +168,21 @@ Instruções para o agente.    <span class="text-neutral-500"># Corpo livre em M
     <section id="topico-3" class="mb-16">
       <div class="flex items-center space-x-4 mb-6">
         <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">3</span>
-        <h2 class="text-2xl font-bold">📝 Campo description: O Gatilho de Ativação</h2>
+        <h2 class="text-2xl font-bold">📝 Campo description: O Gatilho de Ativaçêo</h2>
       </div>
       <p class="text-neutral-300 mb-6 leading-relaxed">
-        A <strong class="text-emerald-400">description</strong> é o campo mais crítico do SKILL.md. É ela que o agente lê para decidir se deve ou não ativar a skill no contexto atual. Uma description bem escrita resulta em ativação precisa; uma vaga resulta em skill ignorada ou ativada incorretamente.
+        A <strong class="text-emerald-400">description</strong> é o campo mais crítico do SKILL.md. É ela que o agente lê para decidir se deve ou nêo ativar a skill no contexto atual. Uma description bem escrita resulta em ativaçêo precisa; uma vaga resulta em skill ignorada ou ativada incorretamente.
       </p>
       <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
         <h3 class="text-lg font-semibold text-emerald-400 mb-4">Anatomia de uma description eficaz</h3>
         <div class="space-y-3">
           <div class="flex items-start space-x-3">
             <span class="text-emerald-400 font-bold w-6">1.</span>
-            <div><strong class="text-white">O que a skill faz</strong> — Verbo de ação claro: "Aplica...", "Garante...", "Guia..."</div>
+            <div><strong class="text-white">O que a skill faz</strong> — Verbo de açêo claro: "Aplica...", "Garante...", "Guia..."</div>
           </div>
           <div class="flex items-start space-x-3">
             <span class="text-emerald-400 font-bold w-6">2.</span>
-            <div><strong class="text-white">Quando usar</strong> — Contexto de ativação: "ao gerar componentes React", "durante revisão de PR"</div>
+            <div><strong class="text-white">Quando usar</strong> — Contexto de ativaçêo: "ao gerar componentes React", "durante revisêo de PR"</div>
           </div>
           <div class="flex items-start space-x-3">
             <span class="text-emerald-400 font-bold w-6">3.</span>
@@ -194,17 +194,17 @@ Instruções para o agente.    <span class="text-neutral-500"># Corpo livre em M
         <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
           <h4 class="font-bold text-red-400 mb-3">✗ Description vaga</h4>
           <code class="text-sm text-neutral-300 block bg-dark-900/50 rounded p-3">"Boas práticas de React"</code>
-          <p class="text-neutral-400 text-xs mt-2">O agente não sabe quando ativar isso — é sempre? Só para componentes? Só para novos arquivos?</p>
+          <p class="text-neutral-400 text-xs mt-2">O agente nêo sabe quando ativar isso — é sempre? Só para componentes? Só para novos arquivos?</p>
         </div>
         <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
           <h4 class="font-bold text-emerald-400 mb-3">✓ Description precisa</h4>
           <code class="text-sm text-neutral-300 block bg-dark-900/50 rounded p-3">"Aplica boas práticas de React ao criar ou modificar componentes, garantindo uso de hooks, TypeScript e acessibilidade"</code>
-          <p class="text-neutral-400 text-xs mt-2">Claro: ação (aplica), quando (criar/modificar componentes), o que (hooks, TS, acessibilidade).</p>
+          <p class="text-neutral-400 text-xs mt-2">Claro: açêo (aplica), quando (criar/modificar componentes), o que (hooks, TS, acessibilidade).</p>
         </div>
       </div>
       <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
         <h3 class="text-lg font-semibold text-primary mb-3"><span class="mr-2">🎯</span> Teste da description</h3>
-        <p class="text-neutral-300 text-sm">Após escrever a description, pergunte: "Se eu for um agente e ler apenas essa linha, saberei exatamente quando devo usar essa skill?" Se a resposta for não, reescreva.</p>
+        <p class="text-neutral-300 text-sm">Após escrever a description, pergunte: "Se eu for um agente e ler apenas essa linha, saberei exatamente quando devo usar essa skill?" Se a resposta for nêo, reescreva.</p>
       </div>
     </section>
 
@@ -215,7 +215,7 @@ Instruções para o agente.    <span class="text-neutral-500"># Corpo livre em M
         <h2 class="text-2xl font-bold">📖 Corpo Markdown: When to Use e Steps</h2>
       </div>
       <p class="text-neutral-300 mb-6 leading-relaxed">
-        O corpo do SKILL.md é Markdown livre, mas duas seções padronizadas maximizam a eficácia: <strong class="text-emerald-400">When to Use</strong> (cenários de ativação) e <strong class="text-emerald-400">Steps</strong> (instruções sequenciais para o agente seguir).
+        O corpo do SKILL.md é Markdown livre, mas duas seções padronizadas maximizam a eficácia: <strong class="text-emerald-400">When to Use</strong> (cenários de ativaçêo) e <strong class="text-emerald-400">Steps</strong> (instruções sequenciais para o agente seguir).
       </p>
       <div class="bg-dark-800 border border-dark-600 rounded-xl p-6 mb-6 font-mono text-sm">
         <p class="text-neutral-500 mb-3 font-sans text-xs">Exemplo completo de corpo bem estruturado:</p>
@@ -245,7 +245,7 @@ siga rigorosamente estas diretrizes de qualidade.
         <ul class="space-y-2 text-neutral-300 text-sm">
           <li class="flex items-start space-x-2"><span class="text-emerald-400">•</span><span><strong>## Examples</strong> — Exemplos de código de entrada e saída</span></li>
           <li class="flex items-start space-x-2"><span class="text-emerald-400">•</span><span><strong>## Avoid</strong> — Padrões a evitar (antipatterns)</span></li>
-          <li class="flex items-start space-x-2"><span class="text-emerald-400">•</span><span><strong>## References</strong> — Links para documentação relevante</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400">•</span><span><strong>## References</strong> — Links para documentaçêo relevante</span></li>
           <li class="flex items-start space-x-2"><span class="text-emerald-400">•</span><span><strong>## Context</strong> — Contexto adicional sobre o projeto ou time</span></li>
         </ul>
       </div>
@@ -288,8 +288,8 @@ description: Guia o processo de deploy seguindo nossa
           <ul class="space-y-2 text-neutral-300 text-sm">
             <li class="flex items-start space-x-2"><span class="text-emerald-400">•</span><span>Defina <code>INSTALL_INTERNAL_SKILLS=1</code></span></li>
             <li class="flex items-start space-x-2"><span class="text-emerald-400">•</span><span>Execute <code>npx skills add owner/repo</code></span></li>
-            <li class="flex items-start space-x-2"><span class="text-emerald-400">•</span><span>Skills internas serão incluídas</span></li>
-            <li class="flex items-start space-x-2"><span class="text-emerald-400">•</span><span>Sem a var, são silenciosamente ignoradas</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">•</span><span>Skills internas serêo incluídas</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">•</span><span>Sem a var, sêo silenciosamente ignoradas</span></li>
           </ul>
         </div>
       </div>
@@ -302,7 +302,7 @@ description: Guia o processo de deploy seguindo nossa
         <h2 class="text-2xl font-bold">🔍 A Skill find-skills como Modelo</h2>
       </div>
       <p class="text-neutral-300 mb-6 leading-relaxed">
-        A skill <strong class="text-emerald-400">find-skills</strong> é a única skill inclusa no repositório vercel-labs/agent-skills e serve como modelo de referência. Ela demonstra como escrever uma skill com gatilhos naturais (linguagem do usuário), instruções claras e integração com o CLI.
+        A skill <strong class="text-emerald-400">find-skills</strong> é a única skill inclusa no repositório vercel-labs/agent-skills e serve como modelo de referência. Ela demonstra como escrever uma skill com gatilhos naturais (linguagem do usuário), instruções claras e integraçêo com o CLI.
       </p>
       <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
         <h3 class="text-lg font-semibold text-emerald-400 mb-4">Por que a find-skills é um modelo</h3>
@@ -321,7 +321,7 @@ description: Guia o processo de deploy seguindo nossa
           </div>
           <div class="flex items-start space-x-3">
             <span class="text-emerald-400">✓</span>
-            <div><strong class="text-white">Sem informação desnecessária</strong> — Focada, sem histórico ou contexto que o agente não precisa</div>
+            <div><strong class="text-white">Sem informaçêo desnecessária</strong> — Focada, sem histórico ou contexto que o agente nêo precisa</div>
           </div>
         </div>
       </div>
@@ -341,14 +341,14 @@ description: Guia o processo de deploy seguindo nossa
         <div class="space-y-4 mb-8">
           <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Frontmatter YAML</strong><span class="text-neutral-400"> — Entre delimitadores ---, contém name e description obrigatórios</span></div></div>
           <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Campo name</strong><span class="text-neutral-400"> — kebab-case, lowercase, sem espaços. Ex: react-best-practices</span></div></div>
-          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Campo description</strong><span class="text-neutral-400"> — Gatilho de ativação: diz ao agente quando usar a skill</span></div></div>
-          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Corpo Markdown</strong><span class="text-neutral-400"> — When to Use e Steps são as seções mais importantes</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Campo description</strong><span class="text-neutral-400"> — Gatilho de ativaçêo: diz ao agente quando usar a skill</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Corpo Markdown</strong><span class="text-neutral-400"> — When to Use e Steps sêo as seções mais importantes</span></div></div>
           <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">metadata.internal</strong><span class="text-neutral-400"> — Oculta a skill da descoberta pública. Ativar com INSTALL_INTERNAL_SKILLS=1</span></div></div>
           <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">find-skills como modelo</strong><span class="text-neutral-400"> — Referência oficial de como escrever uma skill eficaz</span></div></div>
         </div>
         <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
           <h3 class="font-semibold text-emerald-400 mb-2">Próximo Módulo:</h3>
-          <p class="text-neutral-300">1.3 — 🤖 Agentes Suportados — Os 50+ agentes, caminhos de instalação e diferenças de compatibilidade</p>
+          <p class="text-neutral-300">1.3 — 🤖 Agentes Suportados — Os 50+ agentes, caminhos de instalaçêo e diferenças de compatibilidade</p>
         </div>
         <div class="flex flex-col sm:flex-row gap-4">
           <a href="modulo-1-1.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Módulo 1.1</a>

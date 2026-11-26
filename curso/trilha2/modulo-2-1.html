@@ -46,7 +46,7 @@
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <span class="inline-block px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-semibold rounded-full mb-4">MÓDULO 2.1</span>
       <h1 class="text-3xl sm:text-4xl font-bold mb-4">⬇️ skills add — Instalando Skills</h1>
-      <p class="text-lg text-neutral-400 max-w-3xl">Domine o comando mais importante do CLI: todos os formatos de fonte, flags de instalação e estratégias para projeto, global e automação CI/CD.</p>
+      <p class="text-lg text-neutral-400 max-w-3xl">Domine o comando mais importante do CLI: todos os formatos de fonte, flags de instalaçêo e estratégias para projeto, global e automaçêo CI/CD.</p>
       <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
         <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">6</div><div class="text-xs text-neutral-400">Tópicos</div></div>
         <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">40</div><div class="text-xs text-neutral-400">Minutos</div></div>
@@ -61,20 +61,20 @@
     <section id="topico-1" class="mb-16">
       <div class="flex items-center space-x-4 mb-6">
         <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">1</span>
-        <h2 class="text-2xl font-bold">📦 Instalação Básica com Shorthand GitHub</h2>
+        <h2 class="text-2xl font-bold">📦 Instalaçêo Básica com Shorthand GitHub</h2>
       </div>
       <p class="text-neutral-300 mb-6 leading-relaxed">
         A forma mais simples e usada é o shorthand <strong class="text-blue-400">owner/repo</strong>. O CLI resolve automaticamente para a URL completa do GitHub, faz o download e instala para os agentes detectados.
       </p>
       <div class="bg-dark-800 border border-dark-600 rounded-xl p-6 mb-6 font-mono text-sm">
-        <p class="text-neutral-500 mb-3 font-sans text-xs">Exemplos de instalação básica:</p>
-        <pre class="text-neutral-300 leading-relaxed"><span class="text-neutral-500"># Instalação mais simples (shorthand)</span>
+        <p class="text-neutral-500 mb-3 font-sans text-xs">Exemplos de instalaçêo básica:</p>
+        <pre class="text-neutral-300 leading-relaxed"><span class="text-neutral-500"># Instalaçêo mais simples (shorthand)</span>
 <span class="text-blue-400">npx skills add vercel-labs/agent-skills</span>
 
 <span class="text-neutral-500"># O CLI detecta agentes e pergunta:</span>
 <span class="text-neutral-400">? Instalar 12 skills para: claude, cursor, copilot? (Y/n)</span>
 
-<span class="text-neutral-500"># Com -y: pula a confirmação</span>
+<span class="text-neutral-500"># Com -y: pula a confirmaçêo</span>
 <span class="text-blue-400">npx skills add -y vercel-labs/agent-skills</span>
 
 <span class="text-emerald-400">✓ 12 skills instaladas para claude
@@ -84,11 +84,11 @@
       <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
         <h3 class="text-lg font-semibold text-blue-400 mb-3">Como o shorthand é resolvido</h3>
         <div class="font-mono text-sm bg-dark-900/50 rounded-lg p-4">
-          <div class="text-neutral-500"># owner/repo → resolução automática</div>
+          <div class="text-neutral-500"># owner/repo → resoluçêo automática</div>
           <div class="text-blue-400">vercel-labs/agent-skills</div>
           <div class="text-neutral-400">→ https://github.com/vercel-labs/agent-skills</div>
           <div class="text-neutral-400">→ GitHub API → lista de skills</div>
-          <div class="text-neutral-400">→ download → instalação</div>
+          <div class="text-neutral-400">→ download → instalaçêo</div>
         </div>
       </div>
       <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
@@ -148,14 +148,14 @@
     <section id="topico-3" class="mb-16">
       <div class="flex items-center space-x-4 mb-6">
         <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">3</span>
-        <h2 class="text-2xl font-bold">🌍 Flag -g: Instalação Global</h2>
+        <h2 class="text-2xl font-bold">🌍 Flag -g: Instalaçêo Global</h2>
       </div>
       <p class="text-neutral-300 mb-6 leading-relaxed">
-        A flag <strong class="text-blue-400">-g</strong> (ou <code>--global</code>) muda o destino da instalação de <code>./agente/skills/</code> para <code>~/agente/skills/</code>. Skills globais ficam disponíveis em qualquer projeto no seu sistema.
+        A flag <strong class="text-blue-400">-g</strong> (ou <code>--global</code>) muda o destino da instalaçêo de <code>./agente/skills/</code> para <code>~/agente/skills/</code>. Skills globais ficam disponíveis em qualquer projeto no seu sistema.
       </p>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
         <div class="bg-dark-800 border border-dark-600 rounded-xl p-6">
-          <h4 class="font-bold text-white mb-3">📁 Escopo Projeto (padrão)</h4>
+          <h4 class="font-bold text-white mb-3">📁 Escopo Projeto (padrêo)</h4>
           <div class="font-mono text-xs text-neutral-400 space-y-1">
             <div>npx skills add owner/repo</div>
             <div class="text-emerald-400">→ .claude/skills/skill.md</div>
@@ -170,7 +170,7 @@
             <div class="text-blue-400">→ ~/.claude/skills/skill.md</div>
             <div class="text-blue-400">→ ~/.cursor/rules/skill.md</div>
           </div>
-          <p class="text-neutral-400 text-sm mt-3">Não versionado. Suas preferências pessoais em todos os projetos.</p>
+          <p class="text-neutral-400 text-sm mt-3">Nêo versionado. Suas preferências pessoais em todos os projetos.</p>
         </div>
       </div>
       <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
@@ -188,7 +188,7 @@
         <h2 class="text-2xl font-bold">🎯 Flag -a: Instalar para Agente Específico</h2>
       </div>
       <p class="text-neutral-300 mb-6 leading-relaxed">
-        A flag <strong class="text-blue-400">-a</strong> (ou <code>--agent</code>) especifica exatamente para qual agente instalar, sobrescrevendo a detecção automática. Aceita um único agente ou uma lista separada por vírgula.
+        A flag <strong class="text-blue-400">-a</strong> (ou <code>--agent</code>) especifica exatamente para qual agente instalar, sobrescrevendo a detecçêo automática. Aceita um único agente ou uma lista separada por vírgula.
       </p>
       <div class="bg-dark-800 border border-dark-600 rounded-xl p-6 mb-6 font-mono text-sm">
         <pre class="text-neutral-300 leading-relaxed"><span class="text-neutral-500"># Instalar só para Claude Code</span>
@@ -233,17 +233,17 @@
       </div>
       <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
         <h3 class="text-lg font-semibold text-primary mb-3"><span class="mr-2">💡</span> Use --list primeiro</h3>
-        <p class="text-neutral-300 text-sm">Antes de instalar de um novo repositório, use <code>--list</code> para ver quais skills estão disponíveis. Assim você pode escolher exatamente o que precisa com <code>-s</code>.</p>
+        <p class="text-neutral-300 text-sm">Antes de instalar de um novo repositório, use <code>--list</code> para ver quais skills estêo disponíveis. Assim você pode escolher exatamente o que precisa com <code>-s</code>.</p>
       </div>
     </section>
 
     <section id="topico-6" class="mb-16">
       <div class="flex items-center space-x-4 mb-6">
         <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">6</span>
-        <h2 class="text-2xl font-bold">🤖 --all e -y para Automação CI/CD</h2>
+        <h2 class="text-2xl font-bold">🤖 --all e -y para Automaçêo CI/CD</h2>
       </div>
       <p class="text-neutral-300 mb-6 leading-relaxed">
-        Para pipelines de CI/CD e scripts de setup, o comando deve ser não-interativo. As flags <strong class="text-blue-400">--all</strong> e <strong class="text-blue-400">-y</strong> garantem instalação completamente automatizada.
+        Para pipelines de CI/CD e scripts de setup, o comando deve ser nêo-interativo. As flags <strong class="text-blue-400">--all</strong> e <strong class="text-blue-400">-y</strong> garantem instalaçêo completamente automatizada.
       </p>
       <div class="bg-dark-800 border border-dark-600 rounded-xl p-6 mb-6 font-mono text-sm">
         <p class="text-neutral-500 mb-3 font-sans text-xs">Exemplo de GitHub Actions workflow:</p>
@@ -255,11 +255,11 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
         <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6">
           <h3 class="text-lg font-semibold text-blue-400 mb-3">--all</h3>
-          <p class="text-neutral-300 text-sm">Instala para TODOS os agentes suportados, independente de detecção automática. Útil em ambientes de CI onde os agentes não estão instalados mas queremos os arquivos.</p>
+          <p class="text-neutral-300 text-sm">Instala para TODOS os agentes suportados, independente de detecçêo automática. Útil em ambientes de CI onde os agentes nêo estêo instalados mas queremos os arquivos.</p>
         </div>
         <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
           <h3 class="text-lg font-semibold text-primary mb-3">-y / --yes</h3>
-          <p class="text-neutral-300 text-sm">Responde "yes" automaticamente a todas as confirmações. Essencial para scripts não-interativos. Combine com --all para instalação completamente automática.</p>
+          <p class="text-neutral-300 text-sm">Responde "yes" automaticamente a todas as confirmações. Essencial para scripts nêo-interativos. Combine com --all para instalaçêo completamente automática.</p>
         </div>
       </div>
     </section>
@@ -270,10 +270,10 @@
         <div class="space-y-4 mb-8">
           <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Shorthand owner/repo</strong><span class="text-neutral-400"> — O formato mais simples e usado. Ex: npx skills add vercel-labs/agent-skills</span></div></div>
           <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">4 formatos de fonte</strong><span class="text-neutral-400"> — shorthand, URL completa, URL específica, path local</span></div></div>
-          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Flag -g</strong><span class="text-neutral-400"> — Instalação global em ~/. Para preferências pessoais.</span></div></div>
-          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Flag -a</strong><span class="text-neutral-400"> — Agente específico: -a claude,cursor. Override de detecção.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Flag -g</strong><span class="text-neutral-400"> — Instalaçêo global em ~/. Para preferências pessoais.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Flag -a</strong><span class="text-neutral-400"> — Agente específico: -a claude,cursor. Override de detecçêo.</span></div></div>
           <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Flag -s</strong><span class="text-neutral-400"> — Skill específica: -s react-best-practices. Use --list primeiro.</span></div></div>
-          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">--all e -y</strong><span class="text-neutral-400"> — Para automação CI/CD. Instalação não-interativa e completa.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">--all e -y</strong><span class="text-neutral-400"> — Para automaçêo CI/CD. Instalaçêo nêo-interativa e completa.</span></div></div>
         </div>
         <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
           <h3 class="font-semibold text-blue-400 mb-2">Próximo Módulo:</h3>
